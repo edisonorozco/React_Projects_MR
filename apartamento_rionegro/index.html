@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apartamento en Arriendo - Alto Bonito, Rionegro</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===================== BARRA SUPERIOR ===================== -->
+  <header class="topbar">
+    <div class="topbar-info">
+      <h1>Apartamento en Arriendo</h1>
+      <p class="topbar-subtitle">📍 Libertad de la Fortuna, Alto Bonito · Rionegro, Antioquia</p>
+    </div>
+    <a href="#contacto" class="btn-cta btn-cta-small">Contactar por WhatsApp</a>
+  </header>
+
+  <!-- ===================== GALERÍA PRINCIPAL (LO PRIMERO QUE SE VE) ===================== -->
+  <section class="gallery-hero">
+    <div class="gallery-hero-grid">
+
+      <!-- FOTO PRINCIPAL / DESTACADA -->
+      <!-- Coloca tu mejor foto en images/portada.jpg -->
+      <div class="gallery-hero-main gallery-hero-more js-photo" data-index="0">
+        <img src="images/portada.jpg" alt="Fachada del edificio">
+        <span class="gallery-more-label">Ver todas las fotos</span>
+      </div>
+
+      <!-- FOTO 1: Piscina y zona de parqueaderos (vista aérea) -->
+      <!-- Coloca tu foto en images/foto1.jpg -->
+      <div class="gallery-hero-item gallery-pos-1 js-photo" data-index="1">
+        <img src="images/foto1.jpg" alt="Piscina y zona de parqueaderos del conjunto">
+      </div>
+
+      <!-- FOTO 2: Puerta de acceso -->
+      <!-- Coloca tu foto en images/foto2.jpg -->
+      <div class="gallery-hero-item gallery-pos-2 js-photo" data-index="2">
+        <img src="images/foto2.jpg" alt="Puerta de acceso al apartamento">
+      </div>
+
+      <!-- FOTO 3: Cocina -->
+      <!-- Coloca tu foto en images/foto3.jpg -->
+      <div class="gallery-hero-item gallery-pos-3 js-photo" data-index="3">
+        <img src="images/foto3.jpg" alt="Cocina integral del apartamento">
+      </div>
+
+      <!-- FOTO 4: Balcón con vista -->
+      <!-- Coloca tu foto en images/foto4.jpg -->
+      <div class="gallery-hero-item gallery-pos-4 js-photo" data-index="4">
+        <img src="images/foto4.jpg" alt="Balcón con vista">
+      </div>
+
+    </div>
+
+    <!-- GALERÍA COMPLETA (miniaturas adicionales, debajo de la destacada) -->
+    <div class="gallery-grid">
+
+      <!-- FOTO 5: Entrada y parqueaderos del conjunto -->
+      <!-- Coloca tu foto en images/foto5.jpg -->
+      <div class="gallery-item js-photo" data-index="5">
+        <img src="images/foto5.jpg" alt="Entrada y parqueaderos del conjunto">
+      </div>
+
+      <!-- FOTO 6: Vista exterior del edificio -->
+      <!-- Coloca tu foto en images/foto6.jpg -->
+      <div class="gallery-item js-photo" data-index="6">
+        <img src="images/foto6.jpg" alt="Vista exterior del edificio">
+      </div>
+
+      <!-- FOTO 7: Piscina del conjunto -->
+      <!-- Coloca tu foto en images/foto7.jpg -->
+      <div class="gallery-item js-photo" data-index="7">
+        <img src="images/foto7.jpg" alt="Piscina del conjunto">
+      </div>
+
+      <!-- FOTO 8: Puerta interior -->
+      <!-- Coloca tu foto en images/foto8.jpg -->
+      <div class="gallery-item js-photo" data-index="8">
+        <img src="images/foto8.jpg" alt="Puerta interior">
+      </div>
+
+      <!--
+        PARA AGREGAR MÁS FOTOS:
+        1. Copia un bloque <div class="gallery-item js-photo"> completo como los anteriores.
+        2. Cambia el archivo de imagen (foto9.jpg, foto10.jpg, etc.) y el texto "alt".
+        3. Aumenta el número de "data-index" siguiendo la secuencia (9, 10, 11...).
+           Este número es el que usa el lightbox para saber el orden de navegación.
+      -->
+
+    </div>
+  </section>
+
+  <!-- ===================== CARACTERÍSTICAS (todas en tarjetas) ===================== -->
+  <section class="highlights">
+    <h2 class="highlights-title">Características</h2>
+    <div class="highlights-grid">
+      <!-- Edita, agrega o elimina tarjetas según tu apartamento -->
+      <div class="highlight-item">
+        <span class="icon">🛏️</span>
+        <p><strong id="num-habitaciones">2</strong> Habitaciones</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">🛁</span>
+        <p><strong id="num-banos">2</strong> Baños</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">🚗</span>
+        <p><strong id="num-parqueaderos">1</strong> Parqueadero</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">📐</span>
+        <p><strong id="num-metros">50</strong> m²</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">🌇</span>
+        <p>1 balcón</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">🍳</span>
+        <p>Cocina integral</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">🧺</span>
+        <p>Zona de ropas</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">🛋️</span>
+        <p>Sala comedor</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">☀️</span>
+        <p>Excelente iluminación natural</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">🌳</span>
+        <p>Zona tranquila y campestre</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">🏢</span>
+        <p>Estrato 3</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">🔢</span>
+        <p>Piso 5</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">🛗</span>
+        <p>2 ascensores</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">🛡️</span>
+        <p>Portería 24 horas</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">🐾</span>
+        <p>Zonas verdes para mascotas</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">🏊</span>
+        <p>Salón social, piscina y gimnasio (próximamente)</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">🔥</span>
+        <p>Gas por red</p>
+      </div>
+      <div class="highlight-item">
+        <span class="icon">🚿</span>
+        <p>Agua caliente en las 2 duchas</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DESCRIPCIÓN ===================== -->
+  <section class="description">
+    <h2>Descripción</h2>
+    <!--
+      EDITA ESTE TEXTO con la descripción real de tu apartamento:
+      detalles del conjunto, zonas comunes, cercanía a lugares de interés, etc.
+    -->
+    <p>
+      Cómodo y luminoso apartamento de 50 m² ubicado en el conjunto Libertad
+      de la Fortuna, sector Alto Bonito, Rionegro, en zona tranquila y campestre,
+      estrato 3. Cuenta con sala comedor, cocina integral, zona de ropas, balcón,
+      2 habitaciones, 2 baños y parqueadero privado. El conjunto ofrece portería
+      24 horas y zonas verdes para mascotas, con salón social, piscina y gimnasio
+      próximamente. Ideal para quienes buscan tranquilidad y buena ubicación.
+    </p>
+  </section>
+
+  <!-- ===================== UBICACIÓN ===================== -->
+  <section class="location">
+    <h2>Ubicación</h2>
+    <p class="location-address">
+      Conjunto Libertad de la Fortuna, Alto Bonito — Rionegro, Antioquia
+    </p>
+
+    <!--
+      MAPA: captura real de Google Maps con la ruta desde el apartamento.
+      Si quieres actualizar la imagen, reemplaza images/mapa-ubicacion.png.
+      Al hacer clic, redirige a la ubicación real en Google Maps (cambia el
+      href de abajo si el link cambia).
+    -->
+    <a class="map-guide" href="https://maps.app.goo.gl/5ewVTvpqcTDF1jcC8" target="_blank" rel="noopener noreferrer" aria-label="Abrir ubicación en Google Maps">
+      <img src="images/mapa-ubicacion.png" alt="Mapa con la ruta desde el apartamento en Alto Bonito hasta el Parque Principal de Rionegro">
+      <span class="map-guide-cta">📍 Ver ubicación en Google Maps</span>
+    </a>
+    <p class="map-note">A 8-9 min en carro del Parque Principal de Rionegro. Haz clic en el mapa para verlo en Google Maps.</p>
+  </section>
+
+  <!-- ===================== PRECIO ===================== -->
+  <section class="price">
+    <h2>Canon de arrendamiento</h2>
+    <!-- Edita el valor del arriendo -->
+    <p class="price-value">$ 1.350.000 / mes</p>
+    <p class="price-note">Administración incluida</p>
+
+    <!-- ===================== ESTIMADO DE SERVICIOS PÚBLICOS ===================== -->
+    <!--
+      Cálculo hecho a partir de tarifas reales tomadas de las facturas:
+      - Agua (Acueducto + Alcantarillado, EPM estrato 3): costo por m³ + cargo fijo.
+      - Energía (EPM): costo por kWh (suma de generación, transmisión, distribución,
+        comercialización, pérdidas y restricciones).
+      - Gas (Alcanos de Colombia, estrato 5, sin subsidio): cargo fijo + contribución
+        diarios (de la factura) + costo por m³ a una tarifa de referencia de gas
+        natural residencial (~$1.600/m³, estrato 5 sin subsidio).
+      No incluyen aseo (Verdelimpio) ni cobros únicos de legalización/mora
+      (Revisión Energía, Ajuste anterior consumo de gas, Interés por mora).
+      Consumo promedio asumido: 3,5 m³ agua/persona, 40 kWh fijos + 50 kWh/persona
+      de energía. Gas: 6 m³ fijos (cocina compartida) + 2 m³/persona (3 comidas al
+      día) + 7,5 m³/persona (calentador a gas para ducha diaria en los 2 baños).
+      Si cambias de tarifa, edita los valores en $ y los porcentajes de cada
+      gráfico ("--agua-pct" / "--agua-energia-pct") más abajo.
+    -->
+    <div class="utilities-estimate">
+      <h3>Estimado de gasto en agua, energía y gas</h3>
+      <p class="utilities-note">
+        Cálculo aproximado según tarifas vigentes de EPM y Alcanos de Colombia,
+        incluyendo cocina y agua caliente a gas en las 2 duchas. Valor real puede
+        variar según el uso.
+      </p>
+      <div class="utilities-grid">
+
+        <!-- 1 PERSONA -->
+        <div class="utility-card">
+          <h4>1 persona</h4>
+          <div class="pie-chart" style="--agua-pct: 30%; --agua-energia-pct: 80%;">
+            <div class="pie-hole">
+              <strong>$145.301</strong>
+              <span>/mes</span>
+            </div>
+          </div>
+          <ul class="pie-legend">
+            <li><span class="dot dot-agua"></span>Agua: $43.510 (30%)</li>
+            <li><span class="dot dot-energia"></span>Energía: $73.160 (50%)</li>
+            <li><span class="dot dot-gas"></span>Gas: $28.631 (20%)</li>
+          </ul>
+        </div>
+
+        <!-- 2 PERSONAS -->
+        <div class="utility-card">
+          <h4>2 personas</h4>
+          <div class="pie-chart" style="--agua-pct: 32%; --agua-energia-pct: 81%;">
+            <div class="pie-hole">
+              <strong>$230.145</strong>
+              <span>/mes</span>
+            </div>
+          </div>
+          <ul class="pie-legend">
+            <li><span class="dot dot-agua"></span>Agua: $72.509 (32%)</li>
+            <li><span class="dot dot-energia"></span>Energía: $113.805 (49%)</li>
+            <li><span class="dot dot-gas"></span>Gas: $43.831 (19%)</li>
+          </ul>
+        </div>
+
+        <!-- 3 PERSONAS -->
+        <div class="utility-card">
+          <h4>3 personas</h4>
+          <div class="pie-chart" style="--agua-pct: 32%; --agua-energia-pct: 81%;">
+            <div class="pie-hole">
+              <strong>$314.989</strong>
+              <span>/mes</span>
+            </div>
+          </div>
+          <ul class="pie-legend">
+            <li><span class="dot dot-agua"></span>Agua: $101.509 (32%)</li>
+            <li><span class="dot dot-energia"></span>Energía: $154.449 (49%)</li>
+            <li><span class="dot dot-gas"></span>Gas: $59.031 (19%)</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- ===================== COSTO DE VIDA MENSUAL TOTAL ===================== -->
+      <!-- Edita el canon (debe coincidir con .price-value más arriba) si lo cambias -->
+      <div class="total-cost">
+        <h3>Costo de vida mensual (arriendo + servicios)</h3>
+        <div class="total-cost-grid">
+          <div class="total-cost-item">
+            <span class="total-cost-people">1 persona</span>
+            <span class="total-cost-breakdown">$1.350.000 + $145.301</span>
+            <strong class="total-cost-value">$1.495.301</strong>
+          </div>
+          <div class="total-cost-item">
+            <span class="total-cost-people">2 personas</span>
+            <span class="total-cost-breakdown">$1.350.000 + $230.145</span>
+            <strong class="total-cost-value">$1.580.145</strong>
+          </div>
+          <div class="total-cost-item">
+            <span class="total-cost-people">3 personas</span>
+            <span class="total-cost-breakdown">$1.350.000 + $314.989</span>
+            <strong class="total-cost-value">$1.664.989</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACTO ===================== -->
+  <section class="contacto" id="contacto">
+    <h2>¿Te interesa?</h2>
+    <p>Escríbenos directamente por WhatsApp para más información o agendar una visita.</p>
+    <!--
+      IMPORTANTE: Reemplaza "573000000000" por tu número de WhatsApp
+      con indicativo de país (57 para Colombia) y sin espacios ni símbolos.
+      Ejemplo: 573001234567
+    -->
+    <a href="https://wa.me/573000000000?text=Hola,%20estoy%20interesado%20en%20el%20apartamento%20en%20arriendo%20en%20Alto%20Bonito%2C%20Rionegro"
+       class="btn-cta" target="_blank" rel="noopener noreferrer">
+      📱 Escribir por WhatsApp
+    </a>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Apartamento en Arriendo - Alto Bonito, Rionegro</p>
+  </footer>
+
+  <!-- ===================== LIGHTBOX (visor de fotos ampliado) ===================== -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">✕</button>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Foto anterior">‹</button>
+    <img class="lightbox-image" id="lightbox-image" src="" alt="">
+    <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Foto siguiente">›</button>
+    <p class="lightbox-counter" id="lightbox-counter"></p>
+  </div>
+
+  <!-- ===================== SCRIPT: LIGHTBOX CON NAVEGACIÓN ===================== -->
+  <script>
+    (function () {
+      var photos = Array.prototype.slice.call(document.querySelectorAll('.js-photo'));
+      // Ordena las fotos según data-index para que "siguiente/anterior" respete el orden de la galería
+      photos.sort(function (a, b) {
+        return Number(a.dataset.index) - Number(b.dataset.index);
+      });
+
+      var lightbox = document.getElementById('lightbox');
+      var lightboxImage = document.getElementById('lightbox-image');
+      var lightboxCounter = document.getElementById('lightbox-counter');
+      var currentIndex = 0;
+
+      function openLightbox(index) {
+        currentIndex = index;
+        updateLightboxImage();
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      function updateLightboxImage() {
+        var img = photos[currentIndex].querySelector('img');
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+        lightboxCounter.textContent = (currentIndex + 1) + ' / ' + photos.length;
+      }
+
+      function showNext() {
+        currentIndex = (currentIndex + 1) % photos.length;
+        updateLightboxImage();
+      }
+
+      function showPrev() {
+        currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+        updateLightboxImage();
+      }
+
+      photos.forEach(function (el, i) {
+        el.addEventListener('click', function () {
+          openLightbox(i);
+        });
+      });
+
+      document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+      document.getElementById('lightbox-next').addEventListener('click', showNext);
+      document.getElementById('lightbox-prev').addEventListener('click', showPrev);
+
+      // Cerrar al hacer clic fuera de la imagen (en el fondo oscuro)
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      // Navegación con teclado: flechas y Escape
+      document.addEventListener('keydown', function (e) {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') showNext();
+        if (e.key === 'ArrowLeft') showPrev();
+      });
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,694 @@
+/* ===================== VARIABLES / PALETA ===================== */
+:root {
+  --color-primary: #2f6f5e;
+  --color-primary-dark: #1f4d40;
+  --color-accent: #d9a441;
+  --color-gas: #5aa9c9;
+  --color-bg: #faf8f4;
+  --color-text: #2b2b2b;
+  --color-muted: #6b6b6b;
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+h1, h2 {
+  font-weight: 700;
+}
+
+section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+
+/* ===================== BARRA SUPERIOR ===================== */
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 24px 12px;
+}
+
+.topbar-info h1 {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  color: var(--color-primary-dark);
+}
+
+.topbar-subtitle {
+  margin-top: 4px;
+  color: var(--color-muted);
+  font-size: 0.98rem;
+}
+
+.btn-cta {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--color-accent);
+  color: #1f1f1f;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+}
+
+.btn-cta-small {
+  padding: 12px 24px;
+  font-size: 0.95rem;
+}
+
+/* ===================== GALERÍA PRINCIPAL (PRIMERO EN LA PÁGINA) ===================== */
+.gallery-hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px 40px;
+}
+
+.gallery-hero-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-auto-rows: 225px;
+  gap: 10px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/*
+  Posición fija de cada foto en el grid (en vez de dejar que el navegador
+  las ubique automáticamente). Esto evita que la 2a fila (foto3 y foto4)
+  desaparezca en algunos navegadores/pantallas.
+*/
+.gallery-hero-main {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  background: #e8e4dc;
+  min-height: 0;
+}
+
+.gallery-pos-1 {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.gallery-pos-2 {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.gallery-pos-3 {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.gallery-pos-4 {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.gallery-hero-item {
+  background: #e8e4dc;
+  position: relative;
+  min-height: 0;
+}
+
+.gallery-hero-main,
+.gallery-hero-item,
+.gallery-item {
+  cursor: pointer;
+}
+
+.gallery-hero-main img,
+.gallery-hero-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.gallery-hero-main:hover img,
+.gallery-hero-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-hero-more {
+  position: relative;
+}
+
+.gallery-more-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 40, 35, 0.45);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 10px;
+}
+
+/* ===================== HIGHLIGHTS / CARACTERÍSTICAS ===================== */
+.highlights {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.highlights-title {
+  color: var(--color-primary-dark);
+  margin-bottom: 18px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.highlights-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 18px;
+}
+
+.highlight-item {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.highlight-item .icon {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.highlight-item strong {
+  color: var(--color-primary);
+  font-size: 1.3rem;
+}
+
+/* ===================== DESCRIPCIÓN ===================== */
+.description h2,
+.location h2,
+.price h2,
+.contacto h2 {
+  color: var(--color-primary-dark);
+  margin-bottom: 18px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.description h2::after,
+.location h2::after,
+.price h2::after,
+.contacto h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+.description p {
+  color: var(--color-muted);
+  font-size: 1.05rem;
+}
+
+/* ===================== GALERÍA (miniaturas adicionales) ===================== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.gallery-item {
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  aspect-ratio: 4 / 3;
+  background: #e8e4dc; /* placeholder visible mientras no haya foto */
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+/* ===================== UBICACIÓN / MAPA ===================== */
+.location-address {
+  color: var(--color-muted);
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+}
+
+.map-guide {
+  display: block;
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: #eef1e9;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.map-guide:hover {
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+}
+
+.map-guide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.map-guide:hover img {
+  transform: scale(1.03);
+}
+
+.map-guide-cta {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  background: var(--color-accent);
+  color: #1f1f1f;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  border-radius: 50px;
+  box-shadow: var(--shadow);
+  white-space: nowrap;
+}
+
+.map-note {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+/* ===================== PRECIO ===================== */
+.price {
+  text-align: center;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius);
+  max-width: 1000px;
+}
+
+.price h2 {
+  color: #fff;
+}
+
+.price h2::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.price-value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-top: 6px;
+}
+
+.price-note {
+  margin-top: 6px;
+  opacity: 0.85;
+  font-size: 0.95rem;
+}
+
+/* ===================== ESTIMADO DE SERVICIOS PÚBLICOS ===================== */
+.utilities-estimate {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.utilities-estimate h3 {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.utilities-note {
+  max-width: 560px;
+  margin: 8px auto 28px;
+  color: #fff;
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+.utilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px;
+}
+
+.utility-card {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius);
+  padding: 24px 16px;
+}
+
+.utility-card h4 {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 16px;
+}
+
+.pie-chart {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  position: relative;
+  background: conic-gradient(
+    var(--color-accent) 0% var(--agua-pct, 33%),
+    #ffffff var(--agua-pct, 33%) var(--agua-energia-pct, 66%),
+    var(--color-gas) var(--agua-energia-pct, 66%) 100%
+  );
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+}
+
+.pie-hole {
+  position: absolute;
+  inset: 20px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.pie-hole strong {
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.1;
+}
+
+.pie-hole span {
+  color: #fff;
+  opacity: 0.75;
+  font-size: 0.7rem;
+}
+
+.pie-legend {
+  list-style: none;
+  text-align: left;
+  font-size: 0.85rem;
+  color: #fff;
+  opacity: 0.9;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pie-legend .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.dot-agua {
+  background: var(--color-accent);
+}
+
+.dot-energia {
+  background: #ffffff;
+}
+
+.dot-gas {
+  background: var(--color-gas);
+}
+
+/* ===================== COSTO DE VIDA MENSUAL TOTAL ===================== */
+.total-cost {
+  margin-top: 36px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.total-cost h3 {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 22px;
+}
+
+.total-cost-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.total-cost-item {
+  background: var(--color-accent);
+  border-radius: var(--radius);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+}
+
+.total-cost-people {
+  color: #1f1f1f;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.total-cost-breakdown {
+  color: #1f1f1f;
+  opacity: 0.75;
+  font-size: 0.78rem;
+}
+
+.total-cost-value {
+  color: #1f1f1f;
+  font-size: 1.4rem;
+  margin-top: 4px;
+}
+
+/* ===================== CONTACTO ===================== */
+.contacto {
+  text-align: center;
+}
+
+.contacto p {
+  color: var(--color-muted);
+  margin-bottom: 10px;
+}
+
+/* ===================== LIGHTBOX ===================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 20, 18, 0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease;
+  z-index: 999;
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-image {
+  max-width: 88vw;
+  max-height: 82vh;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close,
+.lightbox-nav {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.lightbox-close {
+  top: 22px;
+  right: 22px;
+  width: 44px;
+  height: 44px;
+  font-size: 1.2rem;
+}
+
+.lightbox-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 54px;
+  height: 54px;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.lightbox-prev {
+  left: 18px;
+}
+
+.lightbox-next {
+  right: 18px;
+}
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+  .lightbox-nav {
+    width: 42px;
+    height: 42px;
+    font-size: 1.5rem;
+  }
+
+  .lightbox-prev {
+    left: 8px;
+  }
+
+  .lightbox-next {
+    right: 8px;
+  }
+
+  .lightbox-close {
+    top: 12px;
+    right: 12px;
+  }
+}
+
+/* ===================== FOOTER ===================== */
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 700px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-cta-small {
+    align-self: stretch;
+    text-align: center;
+  }
+
+  .gallery-hero-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 160px;
+  }
+
+  .gallery-hero-main {
+    grid-column: 1 / 3;
+    grid-row: 1;
+  }
+
+  .gallery-pos-1 {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .gallery-pos-2 {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .gallery-pos-3 {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .gallery-pos-4 {
+    grid-column: 2;
+    grid-row: 3;
+  }
+}
+
+@media (max-width: 600px) {
+  section {
+    padding: 40px 18px;
+  }
+}
