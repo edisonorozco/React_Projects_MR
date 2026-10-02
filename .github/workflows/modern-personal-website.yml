@@ -1,0 +1,42 @@
+name: modern_personal_website
+
+# Runs only when something inside modern_personal_website/ (or this pipeline) changes.
+# React app (create-react-app) -> S3 + CloudFront of the portfolio (stack portfolio_web in AWS_Cloud_MR).
+#
+# Deploy runs on push to trunk once these repo variables are set:
+#   PORTFOLIO_BUCKET_NAME, PORTFOLIO_DISTRIBUTION_ID
+# (plus the shared secrets AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY and variable REGION)
+
+on:
+  push:
+    branches: [trunk]
+    paths:
+      - 'modern_personal_website/**'
+      - '.github/workflows/modern-personal-website.yml'
+      - '.github/workflows/_s3-site.yml'
+  pull_request:
+    branches: [trunk]
+    paths:
+      - 'modern_personal_website/**'
+      - '.github/workflows/modern-personal-website.yml'
+      - '.github/workflows/_s3-site.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: modern_personal_website-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  site:
+    uses: ./.github/workflows/_s3-site.yml
+    secrets: inherit
+    with:
+      working-directory: modern_personal_website
+      node-build: true
+      environment: portfolio
+      bucket: ${{ vars.PORTFOLIO_BUCKET_NAME }}
+      distribution-id: ${{ vars.PORTFOLIO_DISTRIBUTION_ID }}
+      deploy: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/trunk' && vars.PORTFOLIO_BUCKET_NAME != '' }}

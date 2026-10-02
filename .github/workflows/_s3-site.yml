@@ -1,0 +1,126 @@
+name: Static site to S3 (reusable)
+
+# Reusable workflow called by each site workflow of the monorepo.
+#   build          -> (React) npm ci + tests + build, or (static) copy the folder as-is
+#   security-scan  -> gitleaks
+#   deploy         -> aws s3 sync --delete + CloudFront invalidation
+#
+# Uses (repo level, shared by all sites):
+#   Secrets  -> AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
+#   Variables -> REGION
+# Bucket and distribution are passed in by the caller (one pair of variables per site).
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        description: Site folder (e.g. profecan)
+        required: true
+        type: string
+      node-build:
+        description: true = React app (npm ci, test, build -> build/); false = static files deployed as-is
+        required: false
+        type: boolean
+        default: true
+      environment:
+        description: GitHub Environment used for the deploy job
+        required: true
+        type: string
+      bucket:
+        description: Target S3 bucket name
+        required: false
+        type: string
+        default: ''
+      distribution-id:
+        description: CloudFront distribution id to invalidate
+        required: false
+        type: string
+        default: ''
+      deploy:
+        description: Run the deploy job
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        if: inputs.node-build
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: ${{ inputs.working-directory }}/package-lock.json
+      - name: Install
+        if: inputs.node-build
+        run: npm ci --no-audit --no-fund
+      - name: Test
+        if: inputs.node-build
+        run: npx react-scripts test --watchAll=false --passWithNoTests
+      - name: Build
+        if: inputs.node-build
+        # CI=false: Actions sets CI=true, which makes react-scripts fail on lint warnings.
+        run: CI=false npx react-scripts build
+
+      - name: Prepare site
+        run: |
+          mkdir -p "$RUNNER_TEMP/site"
+          if [ "${{ inputs.node-build }}" = "true" ]; then
+            cp -r build/. "$RUNNER_TEMP/site/"
+          else
+            tar --exclude='./.claude' --exclude='./README.md' -cf - . | tar -xf - -C "$RUNNER_TEMP/site"
+          fi
+          ls -la "$RUNNER_TEMP/site"
+      - uses: actions/upload-artifact@v5
+        with:
+          name: site
+          path: ${{ runner.temp }}/site
+          retention-days: 7
+
+  security-scan:
+    name: Security Scan (secrets)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    name: Deploy to S3
+    needs: [build, security-scan]
+    if: inputs.deploy
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - uses: actions/download-artifact@v5
+        with:
+          name: site
+          path: site
+      - uses: aws-actions/configure-aws-credentials@v5
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.REGION }}
+      - name: Sync to S3
+        run: aws s3 sync site "s3://${{ inputs.bucket }}" --delete
+      - name: Invalidate CloudFront
+        run: |
+          if [ -z "${{ inputs.distribution-id }}" ]; then
+            echo "::warning::No CloudFront distribution id configured, skipping invalidation"
+            exit 0
+          fi
+          aws cloudfront create-invalidation --distribution-id "${{ inputs.distribution-id }}" --paths "/*"

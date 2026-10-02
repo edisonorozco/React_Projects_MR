@@ -1,0 +1,42 @@
+name: apartamento_rionegro
+
+# Runs only when something inside apartamento_rionegro/ (or this pipeline) changes.
+# Static HTML/CSS (no build) -> S3 + CloudFront.
+#
+# Deploy runs on push to trunk once these repo variables are set:
+#   APARTAMENTO_BUCKET_NAME, APARTAMENTO_DISTRIBUTION_ID
+# (plus the shared secrets AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY and variable REGION)
+
+on:
+  push:
+    branches: [trunk]
+    paths:
+      - 'apartamento_rionegro/**'
+      - '.github/workflows/apartamento-rionegro.yml'
+      - '.github/workflows/_s3-site.yml'
+  pull_request:
+    branches: [trunk]
+    paths:
+      - 'apartamento_rionegro/**'
+      - '.github/workflows/apartamento-rionegro.yml'
+      - '.github/workflows/_s3-site.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: apartamento_rionegro-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  site:
+    uses: ./.github/workflows/_s3-site.yml
+    secrets: inherit
+    with:
+      working-directory: apartamento_rionegro
+      node-build: false
+      environment: apartamento-rionegro
+      bucket: ${{ vars.APARTAMENTO_BUCKET_NAME }}
+      distribution-id: ${{ vars.APARTAMENTO_DISTRIBUTION_ID }}
+      deploy: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/trunk' && vars.APARTAMENTO_BUCKET_NAME != '' }}
