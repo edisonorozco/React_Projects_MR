@@ -36,7 +36,7 @@
 .text__img1 {
   position: absolute;
   margin-top: 100px;
-  background-color: rgb(51, 40, 128);
+  background-color: rgb(218, 141, 64);
   width: 500px;
   height: 300px;
   border-radius: 0px 50px 0px 0px;
@@ -57,19 +57,18 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  color: rgb(61, 60, 60);
+  color: rgb(15, 1, 1);
   font-family: "Courier New", Courier, monospace;
   text-align: justify;
 }
-
-.about__title > i {
+------- .about__title > i {
   font-size: 100px;
 }
 
 .text__img2 {
   position: absolute;
   margin-top: 100px;
-  background-color: rgb(51, 40, 128);
+  background-color: rgb(218, 141, 64);
   width: 500px;
   height: 300px;
   border-radius: 50px 0px 0px 0px;

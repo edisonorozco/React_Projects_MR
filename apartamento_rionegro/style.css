@@ -173,6 +173,21 @@ section {
   padding: 10px;
 }
 
+/* ===================== TÍTULOS DE FOTO (todas menos la principal) ===================== */
+.photo-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 22px 14px 10px;
+  background: linear-gradient(to top, rgba(15, 25, 22, 0.75), rgba(15, 25, 22, 0));
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
 /* ===================== HIGHLIGHTS / CARACTERÍSTICAS ===================== */
 .highlights {
   padding-top: 20px;
@@ -230,6 +245,7 @@ section {
 .description h2,
 .location h2,
 .price h2,
+.requirements h2,
 .contacto h2 {
   color: var(--color-primary-dark);
   margin-bottom: 18px;
@@ -240,6 +256,7 @@ section {
 .description h2::after,
 .location h2::after,
 .price h2::after,
+.requirements h2::after,
 .contacto h2::after {
   content: "";
   position: absolute;
@@ -265,6 +282,7 @@ section {
 }
 
 .gallery-item {
+  position: relative;
   overflow: hidden;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -523,6 +541,102 @@ section {
   color: #1f1f1f;
   font-size: 1.4rem;
   margin-top: 4px;
+}
+
+/* ===================== REQUISITOS Y SEGURO DE ARRENDAMIENTO ===================== */
+.requirements-intro {
+  color: var(--color-muted);
+  font-size: 1.02rem;
+  margin-bottom: 26px;
+}
+
+.insurance-badge {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 24px;
+  margin-bottom: 30px;
+  border-left: 5px solid var(--color-accent);
+}
+
+.insurance-badge .icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.insurance-badge strong {
+  display: block;
+  color: var(--color-primary-dark);
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.insurance-badge p {
+  color: var(--color-muted);
+  font-size: 0.92rem;
+}
+
+.requirements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 26px;
+}
+
+.requirement-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 20px;
+}
+
+.requirement-card h3 {
+  color: var(--color-primary);
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+
+.requirement-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.requirement-card li {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  padding-left: 22px;
+  position: relative;
+}
+
+.requirement-card li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.requirements-note {
+  background: #eef1e9;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.requirements-note p {
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.requirements-note strong {
+  color: var(--color-primary-dark);
 }
 
 /* ===================== CONTACTO ===================== */

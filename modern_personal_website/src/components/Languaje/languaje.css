@@ -1,0 +1,15 @@
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 0.5rem;
+  margin-left: 0.7rem;
+}
+
+.languajes {
+  border-radius: 15%;
+  cursor: pointer;
+}
+
+.active__languaje {
+  box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.75);
+}

@@ -1,0 +1,87 @@
+{
+    "Header": {
+        "home": "Inicio",
+        "about": "Acerca de",
+        "skills": "Habilidades",
+        "services": "Servicios",
+        "portafolio": "Portafolio",
+        "contact": "Contacto"
+    },
+    "Home": {
+        "greeting": "Hola, soy",
+        "profession": "Desarrollador de software",
+        "description": "Bienvenido a mi pagina web, soy Ingeniero de Sistemas con amplia experiencia en el desarrollo de software con un nivel senior, espero que podamos construir proyectos juntos",
+        "contactMe": "Contactame",
+        "scroll": "Desplazarse abajo"
+    },
+    "About": {
+        "aboutMe": "Acerca de mí",
+        "introduction": "Mi introducción",
+        "experience": "Experiencia",
+        "experienceYears": "5 años trabajando",
+        "projects": "Completados",
+        "projectCount": "10 + proyectos",
+        "support": "Soporte",
+        "supporOnline": "Parcial",
+        "description": "Ingeniero de sistemas con amplia experiencia en el desarrollo de software, me gusta explorar y aprender acerca de nuevas tecnologías y técnicas de desarrollo, con un buen liderazgo y curiosidad que me ha llevado a ser un gran autodidacta. Amante de la naturaleza y con la esperanza de contribuir a un mundo mejor.",
+        "downCV": "Descargar CV"
+    },
+    "Skill": {
+        "skill": "Habilidades",
+        "description": "Mi nivel técnico",
+        "fullStack": "Full Stack Developer",
+        "level": "Avanzado",
+        "devOps": "DevOps",
+        "infra": "Infraestructura como código"
+    },
+    "Services": {
+        "backend": "Backend Developer",
+        "frontend": "Frontend Developer",
+        "devops": "DevOps Engineer",
+        "services": "Servicios",
+        "desc": "Lo que ofrezco",
+        "viewMore": "Ver más",
+        "backendDesc": "Mis servicios como backend developer constan de:",
+        "frontendDesc": "Mis servicios como frontend developer constan de:",
+        "devopsDesc": "Mis servicios como ingeniero DevOps constan de:",
+        "db": "Diseño, creación e implementación de bases de datos SQL y NoSQL",
+        "java": "Desarrollo de aplicativos del lado del servidor con diferentes lenguajes y frameworks",
+        "practices": "Desarrollo de software con buenas prácticas para garantizar mantenimiento y escalabilidad",
+        "linux": "Manejo de servidores Linux",
+        "fron": "Creación de páginas web, e-commerce",
+        "desktop": "Creación de aplicativos de escritorio",
+        "pipelines": "Automatización para generar procesos de Integración y despliegues continuos (CI/CD)",
+        "aws": "Implementación de servicios en la nube de AWS",
+        "ascode": "Automatización de despliegues de servicios de AWS con infraestructura como Código",
+        "docker": "Automatización de despliegues de aplicaciones del lado del servidor con docker y kubernetes",
+        "scrum": "Scrum"
+    },
+    "Qualification": {
+        "Trajectory": "Trayectoria",
+        "journey": "Mi viaje personal",
+        "qualification": "Trayectoria",
+        "education": "Educación",
+        "ing": "Ingeniería en sistemas",
+        "tec": "Tecnología en Análisis y desarrollo de sistemas de información​ ",
+        "job": "Experiencia",
+        "exp1": "Desarrollador de software",
+        "exp2": "Desarrollador Java",
+        "exp3": "Desarrollador Java",
+        "exp4": "Desarrollador Java",
+        "exp5": "Ingeniero de software"
+    },
+    "Contact": {
+        "title": "Ponerse en contacto",
+        "subtitle": "Contáctame",
+        "talk": "Háblame",
+        "write": "Escríbeme tu proyecto",
+        "name": "Nombre",
+        "email": "Correo",
+        "project": "Proyecto",
+        "plh1": "Inserta tu nombre",
+        "plh2": "Inserta tu correo",
+        "plh3": "Escribe tu proyecto",
+        "send": "Enviar mensaje",
+        "writeMe": "Escríbeme"
+    }
+}

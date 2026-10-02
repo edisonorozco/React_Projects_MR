@@ -16,40 +16,92 @@ export default function Adoptions() {
     const json = {
         "pet": [
             {
-                "image": "../images/PERRITO1.jpeg",
-                "description": "Este tierno cachorrito de tres meses es una dulce mezcla de color marrón, con un corazón tan cálido que te llenara de amor la vida."
+                "image": "../images/1.png",
+                "description": "Este tierno cachorrito es una dulce mezcla de color marrón y negro, con un corazón tan cálido que te llenara de amor la vida."
             },
             {
-                "image": "../images/PERRITO2.jpeg",
-                "description": "Conoce a nuestro encantador cachorro negro de un año de edad, con una personalidad juguetona y unos ojos conmovedores que te robarán el corazón."
+                "image": "../images/2.png",
+                "description": "Conoce a nuestro encantador perrito blanco, con una personalidad juguetona y unos ojos conmovedores que te robarán el corazón."
             },
             {
-                "image": "../images/PERRITO3.jpeg",
-                "description": "Haz parte de tu familia este tierno cachorrito marrón de tres meses, el cual esta esperando el calor de un hogar."
+                "image": "../images/3.png",
+                "description": "Haz parte de tu familia este tierno perrito, el cual esta esperando el calor de un hogar."
             },
             {
-                "image": "../images/PERRITO4.jpeg",
-                "description": "Estos hermosos perritos de más de dos años de edad, están llenos de amor y afecto. Son de naturaleza juguetona y dulce temperamento los cuales llenarán de amor tu hogar."
+                "image": "../images/4.png",
+                "description": "Es una de las perritas más cariñosas, y cuidadosas que tenemos en nuestro hogar. Le decimos de amor pitbull, fue rescatada y desde entonces creció junto a nosotros."
             },
             {
-                "image": "../images/PERRITO5.jpeg",
-                "description": "Si estás buscando un compañero leal y fiel, no busques más que nuestro hermoso criollito. Con su suave comportamiento, seguramente te hará vivir aventuras inolvidables."
+                "image": "../images/5.png",
+                "description": "Si estás buscando un compañero leal y fiel, no busques más que nuestro hermoso criollito, seguramente te hará vivir aventuras inolvidables."
             },
             {
-                "image": "../images/PERRITO5.jpeg",
-                "description": "Si estás buscando un compañero leal y fiel, no busques más que nuestro hermoso criollito. Con su suave comportamiento, seguramente te hará vivir aventuras inolvidables."
+                "image": "../images/6.png",
+                "description": "Este encantador perrito amarillo peludito es simplemente adorable. Su suave y esponjoso pelaje de color amarillo le da un aspecto único y llamativo que roba corazones a primera vista."
             },
             {
-                "image": "../images/PERRITO5.jpeg",
-                "description": "Si estás buscando un compañero leal y fiel, no busques más que nuestro hermoso criollito. Con su suave comportamiento, seguramente te hará vivir aventuras inolvidables."
+                "image": "../images/23.png",
+                "description": "Es el compañero perfecto para acurrucarse en cualquier momento del día. Siempre está dispuesto a compartir cariño y afecto con todos a su alrededor."
             },
             {
-                "image": "../images/PERRITO5.jpeg",
-                "description": "Si estás buscando un compañero leal y fiel, no busques más que nuestro hermoso criollito. Con su suave comportamiento, seguramente te hará vivir aventuras inolvidables."
+                "image": "../images/8.png",
+                "description": "Este peludito es tan cariñoso como inteligente, lo que lo hace muy fácil de entrenar y socializar."
             },
             {
-                "image": "../images/PERRITO5.jpeg",
-                "description": "Si estás buscando un compañero leal y fiel, no busques más que nuestro hermoso criollito. Con su suave comportamiento, seguramente te hará vivir aventuras inolvidables."
+                "image": "../images/9.png",
+                "description": " Su amabilidad y buen temperamento lo convierten en un amigo perfecto para niños y adultos por igual. "
+            },
+            {
+                "image": "../images/10.png",
+                "description": "Su amor incondicional y lealtad harán que siempre quieras tenerlo cerca."
+            },
+            {
+                "image": "../images/11.png",
+                "description": "Si buscas un compañero leal, alegre y lleno de amor, este perrito amarillo peludito es la elección perfecta. "
+            },
+            {
+                "image": "../images/12.png",
+                "description": " Sin duda, llenará tu vida de alegría y felicidad, convirtiéndose en un miembro muy especial de tu familia. "
+            },
+            {
+                "image": "../images/13.png",
+                "description": "Su corazón es enorme y rebosa de cariño. Es un compañero fiel que siempre está dispuesto a brindar amor y lealtad incondicional. "
+            },
+            {
+                "image": "../images/14.png",
+                "description": "Su naturaleza amigable y extrovertida lo convierte en la mascota ideal para compartir momentos felices y crear memorias inolvidables."
+            },
+            {
+                "image": "../images/15.png",
+                "description": "Su inteligencia y rápida adaptabilidad lo hacen aprender trucos y órdenes con facilidad, lo que lo convierte en el consentido de todos."
+            },
+            {
+                "image": "../images/16.png",
+                "description": "Este peludito es una fuente inagotable de alegría y diversión, siempre dispuesto a embarcarse en nuevas aventuras y descubrir el mundo junto a sus seres queridos. "
+            },
+            {
+                "image": "../images/17.png",
+                "description": "Si estás buscando un amigo fiel y cariñoso, este peludito es la elección perfecta para llenar tu vida de felicidad y compañía."
+            },
+            {
+                "image": "../images/18.png",
+                "description": "Con un carácter amable y tranquilo, este peludito es el compañero perfecto para aquellos que buscan serenidad y calma en su vida. "
+            },
+            {
+                "image": "../images/19.png",
+                "description": "Su dulzura innata lo convierten en un excelente amigo para personas de todas las edades. Es el confidente ideal para los más pequeños y un compañero cariñoso para los adultos. "
+            },
+            {
+                "image": "../images/20.png",
+                "description": "A este peludito le encanta descubrir nuevos lugares y aprender sobre su entorno. Disfrutará enormemente de paseos al aire libre y explorar la naturaleza junto a ti."
+            },
+            {
+                "image": "../images/21.png",
+                "description": "Este peludito es la personificación de la dulzura y el amor. Su presencia en tu vida te llenará de alegría y calidez."
+            },
+            {
+                "image": "../images/22.png",
+                "description": "No dudes en abrirle las puertas de tu hogar y corazón a este perrito, porque encontrarás en él a un amigo fiel y cariñoso que nunca te defraudará. "
             }
         ]
     };
@@ -96,7 +148,7 @@ export default function Adoptions() {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Mi historia</th>
+                            <th>Descripción</th>
                             <th></th>
                         </tr>
                     </thead>

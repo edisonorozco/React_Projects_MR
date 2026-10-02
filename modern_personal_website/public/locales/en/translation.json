@@ -1,0 +1,87 @@
+{
+    "Header": {
+        "home": "Home",
+        "about": "About",
+        "skills": "Skills",
+        "services": "Services",
+        "portafolio": "Portafolio",
+        "contact": "Contact"
+    },
+    "Home": {
+        "greeting": "Hi, i'm",
+        "profession": "Software developer",
+        "description": "Welcome to my website, I am a systems engineer with extensive experience in software development with a senior level, I hope we can build projects together.",
+        "contactMe": "Say Hello",
+        "scroll": "Scroll down"
+    },
+    "About": {
+        "aboutMe": "About me",
+        "introduction": "My introduction",
+        "experience": "Experience",
+        "experienceYears": "5 years working",
+        "projects": "Completed",
+        "projectCount": "10 + projects",
+        "support": "Support",
+        "supporOnline": "Partial",
+        "description": "Systems engineer with extensive experience in software development, I like to explore and learn about new technologies and development techniques, with good leadership and curiosity that has led me to be a great self-taught person. Nature lover and hoping to contribute to a better world.",
+        "downCV": "Download CV"
+    },
+    "Skill": {
+        "skill": "Skills",
+        "description": "My technical level",
+        "fullStack": "Full Stack Developer",
+        "level": "Advanced",
+        "devOps": "DevOps",
+        "infra": "Infrastructure as code"
+    },
+    "Services": {
+        "backend": "Backend Developer",
+        "frontend": "Frontend Developer",
+        "devops": "DevOps Engineer",
+        "services": "Services",
+        "desc": "What I offer",
+        "viewMore": "View More",
+        "backendDesc": "My services as a backend developer consist of:",
+        "frontendDesc": "My services as a frontend developer consist of:",
+        "devopsDesc": "My services as a DevOps engineer consist of:",
+        "db": "Design, creation and implementation of SQL and NoSQL databases",
+        "java": "Development of server-side applications with different languages and frameworks",
+        "practices": "Software development with good practices to guarantee maintenance and scalability",
+        "linux": "Management of Linux servers",
+        "fron": "Creation of web pages, e-commerce",
+        "desktop": "creation of desktop applications",
+        "pipelines": "Automation to generate Continuous Integration and Deployment processes (CI/CD)",
+        "aws": "Implementation of AWS cloud services",
+        "ascode": "Automating AWS Service Deployments with Infrastructure as Code",
+        "docker": "Automating server-side application deployments with docker and kubernetes",
+        "scrum": "Scrum"
+    },
+    "Qualification": {
+        "Trajectory": "Trajectory",
+        "journey": "My personal journey",
+        "qualification": "Qualification",
+        "education": "Education",
+        "ing": "Systems Engineer",
+        "tec": "Technologist in analysis and development of information systems",
+        "job": "Experience",
+        "exp1": "Software Developer",
+        "exp2": "Java Developer",
+        "exp3": "Java Developer",
+        "exp4": "Java Developer",
+        "exp5": "Software engineer"
+    },
+    "Contact": {
+        "title": "Get it touch",
+        "subtitle": "Contact Me",
+        "talk": "Talk to me",
+        "write": "Write me your project",
+        "name": "Name",
+        "email": "Email",
+        "project": "Project",
+        "plh1": "Insert your name",
+        "plh2": "Insert your email",
+        "plh3": "Write your project",
+        "send": "Send message",
+        "writeMe": "Write me"
+    }
+}
