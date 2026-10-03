@@ -3,7 +3,7 @@ import './home.css'
 import { useTranslation } from 'react-i18next';
 import Icon from '../Icon';
 import useList from '../../hooks/useList';
-import Profile from '../../assets/perfil.jpg'
+import Avatar from '../../assets/avatar.jpg'
 import { profile } from '../../data/profile';
 import { openChat } from '../chat/ChatWidget';
 
@@ -37,7 +37,7 @@ const Home = () => {
                 </div>
 
                 <div className="home__meta">
-                    <img src={Profile} alt="Edison Orozco" className="home__avatar" />
+                    <img src={Avatar} alt="Edison Orozco" className="home__avatar" />
                     <div>
                         <strong>{t('Home.since')}</strong>
                         <span className="home__location">
