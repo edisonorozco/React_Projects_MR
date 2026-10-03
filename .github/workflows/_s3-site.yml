@@ -119,7 +119,14 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.REGION }}
       - name: Sync to S3
-        run: aws s3 sync site "s3://${{ inputs.bucket }}" --delete
+        # static/ holds content-hashed CRA bundles: cache them for a year.
+        # Everything else (index.html, locales/*.json, images of static sites) keeps its name
+        # between deploys, so browsers must revalidate it (no-cache = check ETag, 304 if unchanged).
+        run: |
+          aws s3 sync site "s3://${{ inputs.bucket }}" --delete --exclude "static/*" \
+            --cache-control "no-cache"
+          aws s3 sync site "s3://${{ inputs.bucket }}" --delete --exclude "*" --include "static/*" \
+            --cache-control "public, max-age=31536000, immutable"
       - name: Invalidate CloudFront
         run: |
           if [ -z "${{ inputs.distribution-id }}" ]; then
