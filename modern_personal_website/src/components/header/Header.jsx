@@ -1,86 +1,72 @@
 import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import './header.css'
-import { useTheme } from '../../hooks/useTheme'
-import { CloseIcon, MenuIcon, MoonIcon, SunIcon } from '../ui/Icons'
+import { useTranslation } from 'react-i18next';
+import Languaje from '../Languaje/Languaje';
+import Icon from '../Icon';
 
-const LINKS = ['about', 'experience', 'projects', 'lab', 'services', 'contact']
+const links = ['home', 'about', 'services', 'projects', 'experience', 'contact'];
 
 const Header = () => {
-    const { t, i18n } = useTranslation()
-    const { isDark, toggleTheme } = useTheme()
-    const [menuOpen, setMenuOpen] = useState(false)
-    const isEnglish = i18n.language?.startsWith('en')
+    const { t } = useTranslation();
+    const [open, setOpen] = useState(false);
+    const [active, setActive] = useState('home');
+    const [scrolled, setScrolled] = useState(false);
+
+    /* Highlight the link of the section currently in view */
+    useEffect(() => {
+        const sections = links.map((id) => document.getElementById(id)).filter(Boolean);
+        if (!sections.length || !('IntersectionObserver' in window)) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => entries.forEach((entry) => entry.isIntersecting && setActive(entry.target.id)),
+            { rootMargin: '-45% 0px -50% 0px' }
+        );
+        sections.forEach((section) => observer.observe(section));
+        return () => observer.disconnect();
+    }, []);
 
     useEffect(() => {
-        if (!menuOpen) return undefined
-        const onKey = (e) => e.key === 'Escape' && setMenuOpen(false)
-        window.addEventListener('keydown', onKey)
-        return () => window.removeEventListener('keydown', onKey)
-    }, [menuOpen])
-
-    const closeMenu = () => setMenuOpen(false)
+        const onScroll = () => setScrolled(window.scrollY > 8);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
 
     return (
-        <header className="header">
-            <nav className="header__nav container" aria-label="Principal">
-                <a href="#top" className="header__logo" onClick={closeMenu}>
-                    <span className="header__logo-mark">EO</span>
-                    <span className="header__logo-slash">/</span>
-                    <span className="header__logo-name">Edison Orozco</span>
+        <header className={scrolled ? 'header header--scrolled' : 'header'}>
+            <nav className="nav container">
+                <a href="#home" className="nav__logo" onClick={() => setOpen(false)}>
+                    <span className="nav__logo-mark">EO</span>
+                    Edison Orozco
                 </a>
 
-                <ul className="header__links">
-                    {LINKS.map((id) => (
+                <ul className={open ? 'nav__list nav__list--open' : 'nav__list'}>
+                    {links.map((id) => (
                         <li key={id}>
-                            <a href={`#${id}`}>{t(`nav.${id}`)}</a>
-                        </li>
-                    ))}
-                </ul>
-
-                <div className="header__actions">
-                    <button
-                        type="button"
-                        className="header__lang"
-                        onClick={() => i18n.changeLanguage(isEnglish ? 'es' : 'en')}
-                        aria-label={t('nav.switchLang')}
-                    >
-                        <span className={!isEnglish ? 'is-active' : ''}>ES</span> / <span className={isEnglish ? 'is-active' : ''}>EN</span>
-                    </button>
-                    <button
-                        type="button"
-                        className="header__icon-btn"
-                        onClick={toggleTheme}
-                        aria-label={isDark ? t('nav.toLight') : t('nav.toDark')}
-                    >
-                        {isDark ? <SunIcon size={17} /> : <MoonIcon size={17} />}
-                    </button>
-                    <a href="#contact" className="header__cta" onClick={closeMenu}>{t('nav.talk')}</a>
-                    <button
-                        type="button"
-                        className="header__icon-btn header__menu-btn"
-                        onClick={() => setMenuOpen((open) => !open)}
-                        aria-expanded={menuOpen}
-                        aria-controls="mobile-menu"
-                        aria-label={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
-                    >
-                        {menuOpen ? <CloseIcon size={20} /> : <MenuIcon size={20} />}
-                    </button>
-                </div>
-            </nav>
-
-            {menuOpen && (
-                <ul id="mobile-menu" className="header__mobile container">
-                    {LINKS.map((id, index) => (
-                        <li key={id}>
-                            <a href={`#${id}`} onClick={closeMenu}>
-                                <span className="mono">{String(index + 1).padStart(2, '0')}</span>
-                                {t(`nav.${id}`)}
+                            <a
+                                href={`#${id}`}
+                                className={active === id ? 'nav__link nav__link--active' : 'nav__link'}
+                                onClick={() => setOpen(false)}
+                            >
+                                {t(`Header.${id}`)}
                             </a>
                         </li>
                     ))}
                 </ul>
-            )}
+
+                <div className="nav__actions">
+                    <Languaje />
+                    <a href="#contact" className="button button--small nav__hire">{t('Header.hire')}</a>
+                    <button
+                        className="nav__toggle"
+                        onClick={() => setOpen(!open)}
+                        aria-label={open ? t('Header.close') : t('Header.menu')}
+                        aria-expanded={open}
+                    >
+                        <Icon name={open ? 'close' : 'menu'} size={22} />
+                    </button>
+                </div>
+            </nav>
         </header>
     )
 }

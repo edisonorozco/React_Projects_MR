@@ -1,165 +1,306 @@
 {
-    "nav": {
+    "Header": {
+        "home": "Home",
         "about": "About",
-        "experience": "Experience",
-        "projects": "Projects",
-        "lab": "AI Lab",
         "services": "Services",
+        "projects": "Projects",
+        "experience": "Experience",
         "contact": "Contact",
-        "talk": "Talk to me",
-        "openMenu": "Open menu",
-        "closeMenu": "Close menu",
-        "toLight": "Switch to light mode",
-        "toDark": "Switch to dark mode",
-        "switchLang": "Cambiar a español"
+        "hire": "Hire Me",
+        "menu": "Open menu",
+        "close": "Close menu"
     },
-    "hero": {
-        "location": "edison orozco · colombia",
-        "available": "open to AI / backend roles",
-        "titleA": "6 years building software.",
-        "titleB": "Now, building AI systems.",
-        "role": "Software Engineer @ Bancolombia",
-        "stack": "Java · AWS · React · Angular · RAG · LangChain · LangGraph",
-        "intro": "I've spent the last few years building software for real-world environments. Now I'm applying that experience to AI systems, starting with RAG, agents and applications that work with real data.",
-        "viewProjects": "See projects ↓",
-        "cv": "CV (PDF) ↓",
-        "photoAlt": "Photo of Edison Orozco"
-    },
-    "kb": {
-        "title": "Personal knowledge base",
-        "tag": "rag · cv + projects",
-        "intro": "Ask about my experience. Answers come from my CV and my project docs.",
-        "label": "Your question",
-        "ask": "Ask",
-        "asking": "Searching…",
-        "tryWith": "try",
-        "sources": "sources:",
-        "status": "building · sample answers",
-        "arch": "react → api gateway → lambda → pgvector",
-        "offline": "For now I only answer the sample questions. The RAG backend is being built; soon you'll be able to ask anything.",
-        "error": "I couldn't answer right now. Please try again in a while.",
-        "questions": [
+    "Home": {
+        "badge": "Available for new projects",
+        "greeting": "Hi, I'm Edison Orozco",
+        "titleA": "Software",
+        "titleB": "Engineer",
+        "description": "I build backend, web and cloud applications that are easy to maintain. Now I'm bringing that engineering foundation to AI agents and RAG systems.",
+        "ctaWork": "View My Work",
+        "ctaContact": "Get In Touch",
+        "since": "Building software since 2017",
+        "location": "Colombia",
+        "trusted": "Companies I've worked with",
+        "features": [
             {
-                "q": "What has he done with AWS?",
-                "a": "At Bancolombia he works with AWS services in enterprise environments. In his own projects he deploys sites to S3 + CloudFront + Route 53, with infrastructure in CloudFormation and GitHub Actions pipelines.",
-                "src": ["cv.md", "projects/deploy-platform.md"]
+                "icon": "server",
+                "title": "Backend",
+                "desc": "Services and APIs in Java, Spring Boot and Python, with SQL and NoSQL databases."
             },
             {
-                "q": "What has he built?",
-                "a": "A deployment platform for his sites (GitHub Actions → S3 + CloudFront), the website for Corporación Profecan, a rental listing page and, in progress, a semantic movie-review search engine using RAG.",
-                "src": ["projects/", "ai-lab.md"]
+                "icon": "cloud",
+                "title": "Cloud & DevOps",
+                "desc": "AWS deployments, CI/CD pipelines, Docker and infrastructure as code."
             },
             {
-                "q": "What's his experience with Java?",
-                "a": "Java is his main language: Spring Boot, APIs and microservices at Bancolombia, and before that as a Java developer at CODALTEC, the Colombian Aeronautical Industry Corporation and Inter-telco.",
-                "src": ["cv.md", "experience.md"]
-            },
-            {
-                "q": "Why is he learning AI?",
-                "a": "He wants to apply what he knows about enterprise software to LLM systems: how they behave with real data, how to evaluate them and how to take them to production without exposing credentials.",
-                "src": ["now.md"]
-            },
-            {
-                "q": "What does he know about RAG?",
-                "a": "He's building his first RAG system: embeddings in Supabase pgvector, orchestration with LangChain and LangGraph, and a Lambda backend. This knowledge base is that system.",
-                "src": ["ai-lab.md", "projects/movie-search.md"]
+                "icon": "sparkles",
+                "title": "Applied AI",
+                "desc": "Learning and building agents and RAG with LangChain, LangGraph and Bedrock."
             }
         ]
     },
-    "about": {
-        "label": "01 — About",
-        "statementA": "I've spent 6 years building software for banks and companies.",
-        "statementB": "Now I'm learning to build AI systems, and this site is my lab.",
-        "timelineLabel": "Path",
-        "timeline": [
-            { "year": "2017", "title": "First dev job" },
-            { "year": "2019", "title": "Backend with Java" },
-            { "year": "2021", "title": "Enterprise systems" },
-            { "year": "2024", "title": "Frontend + AWS" },
-            { "year": "2026", "title": "AI Engineering", "now": true }
+    "About": {
+        "eyebrow": "About Me",
+        "titleA": "Engineering first,",
+        "titleB": "then code",
+        "paragraphs": [
+            "I'm a systems engineer and I've been building software since 2017: backend services in Java and Spring Boot, web apps with React and automated deployments on AWS.",
+            "I like to understand the problem well before writing code, and to build systems other people can maintain. I'm currently going deep into AI engineering: agents, RAG and orchestration with LangChain and LangGraph.",
+            "Outside of work I'm a curious self-learner and a nature lover."
+        ],
+        "facts": [
+            {
+                "icon": "calendar",
+                "label": "Experience",
+                "value": "Since 2017"
+            },
+            {
+                "icon": "graduation",
+                "label": "Education",
+                "value": "Systems Engineering"
+            },
+            {
+                "icon": "pin",
+                "label": "Location",
+                "value": "Colombia"
+            },
+            {
+                "icon": "compass",
+                "label": "Focus",
+                "value": "Backend · Cloud · AI"
+            }
         ]
     },
-    "experience": {
-        "label": "02 — Experience",
-        "jobs": [
-            { "org": "Bancolombia", "role": "Software Engineer", "dates": "[YYYY] — now", "current": true },
-            { "org": "Tech and Solve", "role": "Software Engineer", "dates": "2021 — [YYYY]" },
-            { "org": "Before", "role": "Java at CODALTEC, CIAC, Inter-telco and Fundación FES", "dates": "2017 — 2021" }
-        ],
-        "toolsLabel": "What I work with",
-        "learning": "learning and building now"
-    },
-    "projects": {
-        "label": "03 — Projects",
-        "title": "Things I've built",
-        "featured": {
-            "status": "BUILDING",
-            "title": "Semantic movie-review search",
-            "line": "Finds reviews by meaning, not by keywords.",
-            "stack": "LangChain · Supabase pgvector · RAG",
-            "query": "something like Interstellar, but shorter",
-            "cta": "See it in the AI Lab"
-        },
+    "Services": {
+        "eyebrow": "What I Do",
+        "titleA": "Services for",
+        "titleB": "your business",
+        "desc": "I help small businesses and founders turn ideas into real software: from a website to the infrastructure that runs it.",
+        "quote": "Quoted per project",
         "items": [
-            { "id": "deployPlatform", "title": "Deployment platform", "line": "One pipeline per site: build, tests and automatic deploy to AWS.", "tag": "LIVE" },
-            { "id": "profecan", "title": "Corporación Profecan", "line": "Website for an animal-welfare and adoption organization.", "tag": "WEBSITE", "alt": "Screenshot of the Profecan website" },
-            { "id": "rionegro", "title": "Apartment for rent", "line": "Rental page with a photo gallery and direct WhatsApp contact.", "tag": "LANDING", "alt": "Screenshot of the rental page in Alto Bonito, Rionegro" }
-        ],
-        "pipeline": [
-            { "name": "git push", "note": "trunk" },
-            { "name": "build + test", "note": "react" },
-            { "name": "gitleaks", "note": "secrets" },
-            { "name": "S3 sync", "note": "deploy" },
-            { "name": "CloudFront", "note": "invalidation" }
+            {
+                "icon": "monitor",
+                "title": "Web Development",
+                "desc": "Fast, responsive websites and web apps that are easy to manage.",
+                "bullets": [
+                    "Landing pages and business sites",
+                    "React applications",
+                    "Online stores"
+                ]
+            },
+            {
+                "icon": "server",
+                "title": "Backend & APIs",
+                "desc": "The logic and data behind your product, designed to grow.",
+                "bullets": [
+                    "REST APIs with Java / Spring Boot",
+                    "Python services",
+                    "SQL and NoSQL databases"
+                ]
+            },
+            {
+                "icon": "cloud",
+                "title": "Cloud & DevOps",
+                "desc": "Cloud infrastructure and reliable, automated deployments.",
+                "bullets": [
+                    "AWS services",
+                    "CI/CD pipelines",
+                    "Docker, Kubernetes and IaC"
+                ]
+            },
+            {
+                "icon": "sparkles",
+                "title": "AI Automation",
+                "desc": "Practical prototypes that bring language models into your workflows.",
+                "bullets": [
+                    "Assistants over your documents (RAG)",
+                    "LLM API integrations",
+                    "Task automation"
+                ]
+            },
+            {
+                "icon": "wrench",
+                "title": "Maintenance & Support",
+                "desc": "Keep your application up to date, secure and running.",
+                "bullets": [
+                    "Bug fixing",
+                    "Dependency updates",
+                    "Performance improvements"
+                ]
+            },
+            {
+                "icon": "compass",
+                "title": "Technical Consulting",
+                "desc": "A second technical opinion before you invest in your project.",
+                "bullets": [
+                    "Architecture and tech choices",
+                    "Code review",
+                    "Best practices"
+                ]
+            }
         ]
     },
-    "lab": {
-        "label": "04 — AI Lab",
-        "title": "What I'm building now",
-        "items": [
-            { "status": "BUILDING", "name": "Ask-about-me assistant", "stack": "RAG · LangChain · pgvector" },
-            { "status": "BUILDING", "name": "Movie-review search", "stack": "embeddings · vector search" },
-            { "status": "EXPERIMENT", "name": "Agents with LangGraph", "stack": "LangGraph" },
-            { "status": "EXPERIMENT", "name": "Bedrock + Strands", "stack": "AWS Bedrock" }
-        ],
-        "nowLabel": "learning",
-        "now": ["LangGraph", "RAG evaluation", "vector search", "agents"]
-    },
-    "services": {
-        "label": "05 — Services",
-        "title": "Have a business? Let's build it together.",
-        "cta": "Tell me your idea →",
-        "items": [
-            { "icon": "web", "title": "Website", "line": "Your business online, with a button so customers can reach you." },
-            { "icon": "app", "title": "Web app", "line": "Orders, customers or inventory in one place, not in spreadsheets." },
-            { "icon": "auto", "title": "Automation", "line": "Repetitive tasks that run by themselves." },
-            { "icon": "ai", "title": "AI for your business", "line": "An assistant that answers with your business's own information." }
-        ],
-        "howLabel": "How we work",
+    "Process": {
+        "title": "How I Work",
+        "desc": "A clear process so you always know where your project stands.",
         "steps": [
-            { "title": "We talk", "line": "You tell me what you need." },
-            { "title": "Proposal", "line": "What I'd build, how long it takes and what it costs." },
-            { "title": "I build", "line": "You see progress while I build it." },
-            { "title": "Launch", "line": "I publish it and leave it running." }
+            {
+                "title": "Discovery",
+                "desc": "Understanding your goals, users and requirements."
+            },
+            {
+                "title": "Planning",
+                "desc": "Defining scope, architecture and timeline."
+            },
+            {
+                "title": "Development",
+                "desc": "Building in short iterations with frequent reviews."
+            },
+            {
+                "title": "Launch",
+                "desc": "Deploying, testing and supporting the rollout."
+            }
+        ],
+        "techTitle": "Technologies I Use"
+    },
+    "Projects": {
+        "eyebrow": "Portfolio",
+        "titleA": "Projects &",
+        "titleB": "lab",
+        "desc": "What I'm building, including my path into AI engineering.",
+        "status": {
+            "live": "Live",
+            "building": "In progress",
+            "planned": "Coming soon"
+        },
+        "items": [
+            {
+                "status": "live",
+                "title": "This portfolio",
+                "desc": "React site deployed on AWS S3 + CloudFront, with GitHub Actions pipelines for build, tests and deployment.",
+                "tags": [
+                    "React",
+                    "AWS S3",
+                    "CloudFront",
+                    "GitHub Actions"
+                ],
+                "linkId": "deployPlatform"
+            },
+            {
+                "status": "live",
+                "image": "profecan",
+                "title": "Corporación Profecan",
+                "desc": "Website for an animal welfare and adoption organization.",
+                "tags": [
+                    "React",
+                    "React Router",
+                    "AWS S3"
+                ]
+            },
+            {
+                "status": "live",
+                "image": "rionegro",
+                "title": "Apartment for rent",
+                "desc": "Rental page in Rionegro with a photo gallery and direct WhatsApp contact.",
+                "tags": [
+                    "HTML",
+                    "CSS",
+                    "AWS S3"
+                ]
+            },
+            {
+                "status": "building",
+                "title": "AI movie review search",
+                "desc": "Semantic search over movie reviews using embeddings and a vector database.",
+                "tags": [
+                    "Python",
+                    "LangChain",
+                    "pgvector",
+                    "Supabase"
+                ]
+            },
+            {
+                "status": "planned",
+                "title": "Personal knowledge base",
+                "desc": "A chat where recruiters can ask about my experience, answered with RAG over my CV and projects.",
+                "tags": [
+                    "RAG",
+                    "LangGraph",
+                    "AWS Lambda"
+                ]
+            }
+        ],
+        "view": "View code",
+        "visit": "Visit site"
+    },
+    "Experience": {
+        "eyebrow": "Journey",
+        "titleA": "Experience &",
+        "titleB": "education",
+        "jobs": "Experience",
+        "education": "Education",
+        "present": "Present",
+        "jobsList": [
+            {
+                "role": "Software Engineer",
+                "company": "Bancolombia",
+                "period": "Present"
+            },
+            {
+                "role": "Software Engineer",
+                "company": "Tech and Solve",
+                "period": "2021"
+            },
+            {
+                "role": "Java Developer",
+                "company": "CODALTEC – Corporación de Alta Tecnología para la Defensa",
+                "period": "2020 – 2021"
+            },
+            {
+                "role": "Java Developer",
+                "company": "CIAC – Corporación de la Industria Aeronáutica Colombiana",
+                "period": "2019"
+            },
+            {
+                "role": "Java Developer",
+                "company": "Inter-telco",
+                "period": "2019"
+            },
+            {
+                "role": "Software Developer",
+                "company": "Fundación FES",
+                "period": "2017 – 2018"
+            }
+        ],
+        "educationList": [
+            {
+                "role": "Systems Engineering",
+                "company": "Corporación Universitaria Remington",
+                "period": "2020 – 2023"
+            },
+            {
+                "role": "Technologist in Information Systems Analysis and Development",
+                "company": "SENA",
+                "period": "2014 – 2017"
+            }
         ]
     },
-    "contact": {
-        "label": "06 — Contact",
-        "title": "Have a project in mind?",
-        "subtitle": "Tell me what you're trying to build.",
-        "reasonLegend": "I'm writing about",
-        "reasons": {
-            "biz": { "label": "My business", "placeholder": "What do you want to build?", "subject": "Project for my business" },
-            "job": { "label": "Job offer", "placeholder": "Tell me about the role and the team.", "subject": "Job opportunity" }
-        },
+    "Contact": {
+        "eyebrow": "Contact",
+        "titleA": "Let's talk about",
+        "titleB": "your project",
+        "desc": "Tell me what you need and I'll get back to you as soon as possible.",
         "name": "Name",
         "email": "Email",
-        "message": "What do you want to build?",
-        "send": "Send message",
-        "sent": "Your email app opened with the message ready. If it didn't, write to me at"
+        "message": "Message",
+        "plhName": "Your name",
+        "plhEmail": "you@email.com",
+        "plhMessage": "Tell me about your project",
+        "send": "Send Message",
+        "note": "Your email app will open with the message ready to send.",
+        "subject": "Project from"
     },
-    "footer": {
-        "deploy": "last deploy",
-        "local": "local build"
+    "Footer": {
+        "rights": "All rights reserved."
     }
 }

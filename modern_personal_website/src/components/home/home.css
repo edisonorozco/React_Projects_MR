@@ -1,0 +1,212 @@
+.home {
+  position: relative;
+  padding: calc(var(--header-height) + 4rem) 0 3.5rem;
+  background-color: var(--surface);
+  background-image: radial-gradient(var(--dots) 1px, transparent 1px);
+  background-size: 22px 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Fade the dot grid out toward the edges */
+.home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 35%, var(--surface) 85%);
+  pointer-events: none;
+}
+
+.home__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.home__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+}
+
+.home__greeting {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.home__title {
+  margin-top: 0.5rem;
+  font-size: var(--hero-size);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+.home__title span {
+  color: var(--title-soft);
+}
+
+.home__description {
+  max-width: 600px;
+  margin-top: 1.25rem;
+  font-size: 1.075rem;
+  color: var(--text);
+}
+
+.home__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+/* Avatar + since + social row (replaces star rating in the reference) */
+.home__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 2rem;
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.home__meta strong {
+  display: block;
+  color: var(--title);
+  font-weight: 600;
+}
+
+.home__avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+.home__location {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--muted);
+}
+
+.home__divider {
+  width: 1px;
+  height: 1.75rem;
+  background: var(--border);
+}
+
+.home__social {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.home__social a {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--muted);
+  border-radius: var(--radius-sm);
+  transition: color 0.2s, background 0.2s;
+}
+
+.home__social a:hover {
+  color: var(--title);
+  background: var(--page);
+}
+
+.home__features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 760px;
+  margin-top: 3rem;
+}
+
+.home__feature {
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home__feature .icon-tile {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.home__feature h3 {
+  margin-top: 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.home__feature p {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.home__trusted {
+  width: 100%;
+  max-width: 760px;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.home__trusted p {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.home__trusted ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 2.25rem;
+  margin-top: 1rem;
+}
+
+.home__trusted li {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #94a3b8;
+  transition: color 0.2s;
+}
+
+.home__trusted li:hover {
+  color: var(--title-soft);
+}
+
+/*==================== Breakpoints ====================*/
+@media screen and (max-width: 700px) {
+  .home {
+    padding-top: calc(var(--header-height) + 2.5rem);
+  }
+
+  .home__features {
+    grid-template-columns: 1fr;
+    max-width: 380px;
+  }
+
+  .home__meta {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .home__divider {
+    display: none;
+  }
+}

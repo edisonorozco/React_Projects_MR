@@ -1,0 +1,230 @@
+/*==================== Variables ====================*/
+:root {
+  --header-height: 4rem;
+
+  /* Colors (slate scale) */
+  --page: #f1f5f9;
+  --surface: #ffffff;
+  --surface-muted: #f8fafc;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --title: #0f172a;
+  --title-soft: #475569;
+  --text: #475569;
+  --muted: #64748b;
+  --accent: #0f172a;
+  --accent-hover: #1e293b;
+  --on-accent: #ffffff;
+  --success: #16a34a;
+  --dots: #dbe1e8;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 1px 2px rgba(15, 23, 42, 0.04), 0 6px 18px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 2px 4px rgba(15, 23, 42, 0.04), 0 14px 32px rgba(15, 23, 42, 0.09);
+
+  /* Typography */
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --hero-size: clamp(2.5rem, 6vw, 4rem);
+  --h2-size: clamp(1.75rem, 3.6vw, 2.5rem);
+  --h3-size: 1.0625rem;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --z-fixed: 100;
+}
+
+/*==================== Base ====================*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: var(--page);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--title);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/*==================== Layout ====================*/
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.section {
+  padding-block: 5.5rem;
+}
+
+.section__head {
+  max-width: 640px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.section__title {
+  font-size: var(--h2-size);
+  font-weight: 700;
+}
+
+.section__title span,
+.text-soft {
+  color: var(--title-soft);
+}
+
+.section__desc {
+  margin-top: 1rem;
+  color: var(--muted);
+}
+
+/* Small rounded label above titles ("What I Do") */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+}
+
+/*==================== Reusable components ====================*/
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.button:hover {
+  background: var(--accent-hover);
+}
+
+.button--outline {
+  background: var(--surface);
+  color: var(--title);
+  border-color: var(--border-strong);
+}
+
+.button--outline:hover {
+  background: var(--surface-muted);
+}
+
+.button--small {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.icon-tile {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--title);
+  background: var(--page);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.chip {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--title);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+}
+
+/*==================== Breakpoints ====================*/
+@media screen and (max-width: 576px) {
+  .container {
+    padding-inline: 1rem;
+  }
+
+  .section {
+    padding-block: 4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

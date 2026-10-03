@@ -1,33 +1,42 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
+import AboutImg from "../../assets/perfil.jpg"
 import './about.css'
-import { useList } from '../../hooks/useList'
+import { useTranslation } from 'react-i18next';
+import Icon from '../Icon';
+import useList from '../../hooks/useList';
 
 const About = () => {
-    const { t } = useTranslation()
-    const timeline = useList('about.timeline')
+    const { t } = useTranslation();
+    const list = useList();
 
     return (
-        <section id="about" className="section" aria-labelledby="about-label">
-            <div className="container section__grid">
-                <h2 id="about-label" className="section__label">{t('about.label')}</h2>
-                <div className="section__body about">
-                    <p className="about__statement reveal">
-                        {t('about.statementA')} <span className="about__statement-muted">{t('about.statementB')}</span>
-                    </p>
+        <section className="about section" id='about'>
+            <div className="about__container container">
+                <div className="about__media">
+                    <img src={AboutImg} alt="Edison Orozco" className="about__img" />
+                </div>
 
-                    <ol className="timeline reveal" aria-label={t('about.timelineLabel')}>
-                        {timeline.map((step) => (
-                            <li key={step.year} className={`timeline__step${step.now ? ' timeline__step--now' : ''}`}>
-                                <div className="timeline__track">
-                                    <span className="timeline__dot" />
-                                    <span className="timeline__line" />
+                <div className="about__data">
+                    <span className="eyebrow">{t('About.eyebrow')}</span>
+                    <h2 className="section__title">
+                        {t('About.titleA')} <span>{t('About.titleB')}</span>
+                    </h2>
+
+                    {list('About.paragraphs').map((paragraph) => (
+                        <p className="about__description" key={paragraph}>{paragraph}</p>
+                    ))}
+
+                    <ul className="about__facts">
+                        {list('About.facts').map((fact) => (
+                            <li className="about__fact card" key={fact.label}>
+                                <span className="icon-tile"><Icon name={fact.icon} size={16} /></span>
+                                <div>
+                                    <span className="about__fact-label">{fact.label}</span>
+                                    <strong className="about__fact-value">{fact.value}</strong>
                                 </div>
-                                <span className="timeline__year mono">{step.year}</span>
-                                <span className="timeline__title">{step.title}</span>
                             </li>
                         ))}
-                    </ol>
+                    </ul>
                 </div>
             </div>
         </section>

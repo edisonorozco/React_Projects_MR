@@ -1,30 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import './App.css'
 import Header from './components/header/Header'
-import Hero from './components/hero/Hero'
+import Home from './components/home/Home'
 import About from './components/about/About'
-import Experience from './components/experience/Experience'
-import Projects from './components/projects/Projects'
-import Lab from './components/lab/Lab'
 import Services from './components/services/Services'
+import Process from './components/process/Process'
+import Projects from './components/projects/Projects'
+import Experience from './components/experience/Experience'
 import Contact from './components/contact/Contact'
 import Footer from './components/footer/Footer'
-import { useReveal } from './hooks/useReveal'
 
 const App = () => {
-  const { i18n } = useTranslation()
-  useReveal(i18n.language)
+  const { ready } = useTranslation();
+
+  /* Translations load async, so re-apply a #section deep link once the content exists */
+  useEffect(() => {
+    const target = ready && window.location.hash && document.getElementById(window.location.hash.slice(1));
+    if (target) target.scrollIntoView();
+  }, [ready]);
 
   return (
     <>
       <Header />
-      <main id="top">
-        <Hero />
+      <main className='main'>
+        <Home />
         <About />
-        <Experience />
-        <Projects />
-        <Lab />
         <Services />
+        <Process />
+        <Projects />
+        <Experience />
         <Contact />
       </main>
       <Footer />

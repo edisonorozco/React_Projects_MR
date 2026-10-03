@@ -5,61 +5,35 @@ import i18n, { es, en } from './testUtils/i18nForTests'
 import App from './App'
 
 beforeEach(async () => {
-    document.documentElement.dataset.theme = 'light'
     await act(() => i18n.changeLanguage('es'))
 })
 
 test('shows who Edison is and every section of the page', () => {
     render(<App />)
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(es.hero.titleA)
-    expect(screen.getByText(es.hero.role)).toBeInTheDocument()
-    for (const id of ['about', 'experience', 'projects', 'lab', 'services', 'contact']) {
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(`${es.Home.titleA} ${es.Home.titleB}`)
+    for (const id of ['home', 'about', 'services', 'projects', 'experience', 'contact']) {
         expect(document.getElementById(id)).toBeInTheDocument()
     }
+    expect(screen.getAllByRole('heading', { level: 3, name: es.Services.items[0].title })).not.toHaveLength(0)
 })
 
-test('knowledge base answers the sample questions with their sources', async () => {
-    render(<App />)
-    const [, second] = es.kb.questions
-
-    // The first sample is answered on load.
-    expect(screen.getByText(es.kb.questions[0].a)).toBeInTheDocument()
-
-    userEvent.click(screen.getByRole('button', { name: new RegExp(second.q.replace(/[?¿]/g, '.')) }))
-
-    expect(await screen.findByText(second.a)).toBeInTheDocument()
-    expect(screen.getByText(second.src[0])).toBeInTheDocument()
-})
-
-test('knowledge base is honest about questions it cannot answer yet', async () => {
-    render(<App />)
-    const input = screen.getByLabelText(es.kb.label)
-
-    userEvent.clear(input)
-    userEvent.type(input, '¿Cuál es su color favorito?')
-    userEvent.click(screen.getByRole('button', { name: es.kb.ask }))
-
-    expect(await screen.findByText(es.kb.offline)).toBeInTheDocument()
-})
-
-test('theme toggle switches and remembers dark mode', async () => {
+test('lists the real experience, starting with the current job', () => {
     render(<App />)
 
-    userEvent.click(screen.getByRole('button', { name: es.nav.toDark }))
-
-    expect(document.documentElement.dataset.theme).toBe('dark')
-    expect(localStorage.getItem('theme')).toBe('dark')
-    // user-event v13 doesn't wrap clicks in act(), so the re-render lands a tick later.
-    expect(await screen.findByRole('button', { name: es.nav.toLight })).toBeInTheDocument()
+    const [current] = es.Experience.jobsList
+    const firstJob = document.querySelector('#experience .experience__item')
+    expect(firstJob).toHaveTextContent(current.role)
+    expect(firstJob).toHaveTextContent(current.company)
+    expect(firstJob).toHaveTextContent(current.period)
 })
 
 test('language toggle switches the page to English', async () => {
     render(<App />)
 
-    userEvent.click(screen.getByRole('button', { name: es.nav.switchLang }))
+    userEvent.click(screen.getByRole('button', { name: 'EN' }))
 
     await waitFor(() =>
-        expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(en.hero.titleA)
+        expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(`${en.Home.titleA} ${en.Home.titleB}`)
     )
 })

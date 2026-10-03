@@ -1,55 +1,39 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import './services.css'
-import { useList } from '../../hooks/useList'
-import { AppIcon, AutomationIcon, ChatIcon, WebIcon } from '../ui/Icons'
-
-const ICONS = { web: WebIcon, app: AppIcon, auto: AutomationIcon, ai: ChatIcon }
+import { useTranslation } from 'react-i18next';
+import Icon from '../Icon';
+import useList from '../../hooks/useList';
 
 const Services = () => {
-    const { t } = useTranslation()
-    const items = useList('services.items')
-    const steps = useList('services.steps')
+    const { t } = useTranslation();
+    const list = useList();
 
     return (
-        <section id="services" className="services" aria-labelledby="services-title">
+        <section className="services section" id="services">
             <div className="container">
-                <div className="section__head services__head">
-                    <div className="section__head-main">
-                        <span className="section__label">{t('services.label')}</span>
-                        <h2 id="services-title" className="section__title services__title">{t('services.title')}</h2>
-                    </div>
-                    <a href="#contact" className="btn services__cta">{t('services.cta')}</a>
+                <div className="section__head">
+                    <span className="eyebrow">{t('Services.eyebrow')}</span>
+                    <h2 className="section__title">
+                        {t('Services.titleA')} <span>{t('Services.titleB')}</span>
+                    </h2>
+                    <p className="section__desc">{t('Services.desc')}</p>
                 </div>
 
-                <ul className="services__grid">
-                    {items.map((item, index) => {
-                        const Icon = ICONS[item.icon] || WebIcon
-                        return (
-                            <li key={item.title} className="service reveal">
-                                <span className="service__icon"><Icon size={20} strokeWidth={1.7} /></span>
-                                <span className="service__num mono">{String(index + 1).padStart(2, '0')}</span>
-                                <h3 className="service__title">{item.title}</h3>
-                                <p className="service__line">{item.line}</p>
-                            </li>
-                        )
-                    })}
-                </ul>
-
-                <div className="steps reveal">
-                    <h3 className="eyebrow steps__label">{t('services.howLabel')}</h3>
-                    <ol className="steps__list">
-                        {steps.map((step, index) => (
-                            <li key={step.title} className="step">
-                                <div className="step__track">
-                                    <span className="step__num mono">{index + 1}</span>
-                                    <span className="step__line" />
-                                </div>
-                                <span className="step__title">{step.title}</span>
-                                <span className="step__text">{step.line}</span>
-                            </li>
-                        ))}
-                    </ol>
+                <div className="services__grid">
+                    {list('Services.items').map((service) => (
+                        <article className="services__card card" key={service.title}>
+                            <span className="icon-tile"><Icon name={service.icon} /></span>
+                            <h3 className="services__title">{service.title}</h3>
+                            <p className="services__desc">{service.desc}</p>
+                            <ul className="services__bullets">
+                                {service.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+                            </ul>
+                            <a href="#contact" className="services__quote">
+                                {t('Services.quote')}
+                                <Icon name="arrowRight" size={16} />
+                            </a>
+                        </article>
+                    ))}
                 </div>
             </div>
         </section>
