@@ -1,0 +1,228 @@
+.projects__github {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Shared hover: a light zoom on the visual and a nudge on the arrow. */
+.lift {
+  text-decoration: none;
+}
+
+.lift:hover {
+  text-decoration: none;
+}
+
+.lift img,
+.lift .zoom {
+  transition: transform 0.5s ease;
+}
+
+.lift:hover img,
+.lift:hover .zoom {
+  transform: scale(1.025);
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.lift:hover .arrow {
+  transform: translateX(4px);
+}
+
+/*=============================== FEATURED =============================*/
+.featured {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--rule-2);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--paper);
+  transition: border-color 0.2s ease;
+}
+
+.featured:hover {
+  border-color: var(--ink);
+}
+
+.featured__visual {
+  flex: 1.3 1 480px;
+  min-width: 0;
+  padding: clamp(24px, 4vw, 48px);
+  background: var(--code);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.featured__mock {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.featured__search {
+  height: 54px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  border: 1px solid var(--rule-2);
+  border-radius: 10px;
+  background: var(--bg);
+  font-size: 15px;
+}
+
+.featured__results {
+  display: flex;
+  gap: 10px;
+}
+
+.featured__result {
+  flex: 1;
+  padding: 14px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.featured__bar {
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--rule-2);
+}
+
+.featured__bar--title {
+  height: 8px;
+  background: var(--ink);
+}
+
+.featured__flow {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.featured__flow-hl {
+  color: var(--accent);
+}
+
+.featured__info {
+  flex: 1 1 320px;
+  min-width: 0;
+  padding: clamp(24px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+}
+
+.featured__title {
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.featured__line {
+  color: var(--ink-2);
+}
+
+.featured__stack {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.featured__cta {
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/*=============================== GRID =============================*/
+.work-grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px 24px;
+}
+
+.work {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.work__visual {
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  background: var(--code);
+  overflow: hidden;
+}
+
+.work__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.work__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.work__title {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.work__tag {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.work__line {
+  margin-top: -8px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.pipeline {
+  height: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  font-size: 12.5px;
+}
+
+.pipeline__step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pipeline__dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--live);
+}
+
+.pipeline__name {
+  flex: 1;
+}
+
+.pipeline__note {
+  color: var(--muted);
+}

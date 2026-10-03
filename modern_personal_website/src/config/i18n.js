@@ -4,19 +4,24 @@ import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 i18n
-    .use(Backend)
-    .use(initReactI18next) // passes i18n down to react-i18next
+    .use(Backend) // loads /locales/{lng}/translation.json
+    .use(initReactI18next)
     .use(LanguageDetector)
     .init({
-        // lng: 'en', // if you're using a language detector, do not define the lng option
-        fallbackLng: 'en',
-        react: {
-            useSuspense: false
-        },
+        supportedLngs: ['es', 'en'],
+        fallbackLng: 'es',
+        nonExplicitSupportedLngs: true, // "es-CO" -> "es"
         detection: {
-            order: ['path', 'htmlTag']
+            order: ['localStorage', 'navigator'],
+            caches: ['localStorage'],
         },
         interpolation: {
-            escapeValue: false, // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape
+            escapeValue: false, // react already escapes
         },
     });
+
+i18n.on('languageChanged', (lng) => {
+    document.documentElement.lang = lng.startsWith('en') ? 'en' : 'es';
+});
+
+export default i18n;
