@@ -13,6 +13,13 @@ export const projectLinks = {
     movieSearch: '', // TODO: demo URL once it is live
 };
 
+// Shown in "Technologies I Use" and by the chat assistant.
+export const technologies = [
+    'Java', 'Spring Boot', 'Python', 'JavaScript', 'React', 'SQL', 'NoSQL',
+    'AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Git', 'Linux',
+    'LangChain', 'LangGraph', 'Amazon Bedrock'
+];
+
 // Injected at build time by CI (see .github/workflows/_s3-site.yml). Empty on local builds.
 export const build = {
     commit: (process.env.REACT_APP_GIT_SHA || '').slice(0, 7),

@@ -2,12 +2,7 @@ import React from 'react'
 import './process.css'
 import { useTranslation } from 'react-i18next';
 import useList from '../../hooks/useList';
-
-const technologies = [
-    'Java', 'Spring Boot', 'Python', 'JavaScript', 'React', 'SQL', 'NoSQL',
-    'AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Git', 'Linux',
-    'LangChain', 'LangGraph', 'Amazon Bedrock'
-];
+import { technologies } from '../../data/profile';
 
 const Process = () => {
     const { t } = useTranslation();

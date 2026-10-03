@@ -20,6 +20,7 @@
         "description": "I build backend, web and cloud applications that are easy to maintain. Now I'm bringing that engineering foundation to AI agents and RAG systems.",
         "ctaWork": "View My Work",
         "ctaContact": "Get In Touch",
+        "ctaAssistant": "Ask the assistant",
         "since": "Building software since 2017",
         "location": "Colombia",
         "trusted": "Companies I've worked with",
@@ -304,5 +305,80 @@
     },
     "Footer": {
         "rights": "All rights reserved."
+    },
+    "Chat": {
+        "open": "Open chat",
+        "close": "Close chat",
+        "title": "Edison's assistant",
+        "status": "Automated replies",
+        "teaser": "Have a project in mind? I can help you get a quote.",
+        "dismiss": "Dismiss message",
+        "greeting": "Hi! I'm Edison's virtual assistant. I can help you get a quote for a project or tell you about his experience. What would you like to do?",
+        "menuPrompt": "What else can I help you with?",
+        "placeholder": "Type a message…",
+        "send": "Send",
+        "typing": "Typing…",
+        "options": {
+            "quote": "Get a quote",
+            "experience": "Edison's experience",
+            "services": "Services",
+            "projects": "Projects",
+            "tech": "Technologies",
+            "contact": "Talk to Edison",
+            "ai": "Are you an AI?",
+            "menu": "Back to menu",
+            "cancel": "Cancel",
+            "quoteSend": "Send by email"
+        },
+        "answers": {
+            "experience": "Edison is a systems engineer who has been building software since 2017. Here is his journey:",
+            "services": "These are the services he offers. Each one is quoted per project:",
+            "projects": "Some of his projects:",
+            "tech": "He mainly works with:",
+            "contact": "You can write to him directly:",
+            "ai": "For now I answer with predefined options, no AI. Edison is building a RAG version that will answer free-form questions using his CV and projects as sources.",
+            "fallback": "I can't understand free-form questions yet. Pick one of these options or write to Edison directly."
+        },
+        "links": {
+            "section": "View section",
+            "email": "Send email",
+            "github": "GitHub",
+            "linkedin": "LinkedIn"
+        },
+        "quote": {
+            "start": "Great! What kind of project do you have in mind?",
+            "types": [
+                "Website",
+                "Online store",
+                "Backend / API",
+                "Cloud / DevOps",
+                "AI automation",
+                "Other"
+            ],
+            "timeline": "When do you need it?",
+            "timelines": [
+                "As soon as possible",
+                "In 1 to 3 months",
+                "No fixed date"
+            ],
+            "description": "Tell me briefly what it is about.",
+            "descriptionPlh": "Describe your project…",
+            "name": "What's your name?",
+            "namePlh": "Your name",
+            "email": "Which email can Edison reply to?",
+            "emailPlh": "you@email.com",
+            "invalidEmail": "That email doesn't look valid, could you check it?",
+            "summary": "Here is a summary of your request:",
+            "labels": {
+                "type": "Type",
+                "timeline": "Timeline",
+                "description": "Description",
+                "name": "Name",
+                "email": "Email"
+            },
+            "restart": "Start over",
+            "sent": "Done! Your email app opened with the request. Edison will get back to you as soon as possible.",
+            "subject": "Quote"
+        }
     }
 }
