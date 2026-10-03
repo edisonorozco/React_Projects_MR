@@ -8,7 +8,9 @@
         "contact": "Contacto",
         "hire": "Contrátame",
         "menu": "Abrir menú",
-        "close": "Cerrar menú"
+        "close": "Cerrar menú",
+        "toDark": "Cambiar a modo oscuro",
+        "toLight": "Cambiar a modo claro"
     },
     "Home": {
         "badge": "Disponible para nuevos proyectos",

@@ -92,14 +92,14 @@
 
 .contact__field input::placeholder,
 .contact__field textarea::placeholder {
-  color: #94a3b8;
+  color: var(--subtle);
 }
 
 .contact__field input:focus,
 .contact__field textarea:focus {
   background: var(--surface);
   border-color: var(--title-soft);
-  box-shadow: 0 0 0 3px rgba(71, 85, 105, 0.12);
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 .contact__footer {

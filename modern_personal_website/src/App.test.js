@@ -37,3 +37,15 @@ test('language toggle switches the page to English', async () => {
         expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(`${en.Home.titleA} ${en.Home.titleB}`)
     )
 })
+
+test('theme toggle switches to dark mode and remembers it', async () => {
+    document.documentElement.dataset.theme = 'light'
+    localStorage.clear()
+    render(<App />)
+
+    userEvent.click(screen.getByRole('button', { name: es.Header.toDark }))
+
+    expect(document.documentElement.dataset.theme).toBe('dark')
+    expect(localStorage.getItem('theme')).toBe('dark')
+    expect(await screen.findByRole('button', { name: es.Header.toLight })).toBeInTheDocument()
+})
