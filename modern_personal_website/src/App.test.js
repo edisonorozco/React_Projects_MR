@@ -49,3 +49,12 @@ test('theme toggle switches to dark mode and remembers it', async () => {
     expect(localStorage.getItem('theme')).toBe('dark')
     expect(await screen.findByRole('button', { name: es.Header.toLight })).toBeInTheDocument()
 })
+
+test('hero button opens the virtual assistant', async () => {
+    render(<App />)
+
+    userEvent.click(screen.getByRole('button', { name: es.Home.ctaAssistant }))
+
+    expect(await screen.findByRole('dialog', { name: es.Chat.title })).toBeInTheDocument()
+    expect(await screen.findByText(es.Chat.greeting)).toBeInTheDocument()
+})

@@ -20,6 +20,7 @@
         "description": "Construyo aplicaciones backend, web y en la nube que sean fáciles de mantener. Hoy llevo esa base de ingeniería al desarrollo de agentes de IA y sistemas RAG.",
         "ctaWork": "Ver mi trabajo",
         "ctaContact": "Contáctame",
+        "ctaAssistant": "Hablar con el asistente",
         "since": "Construyendo software desde 2017",
         "location": "Colombia",
         "trusted": "Empresas donde he trabajado",
@@ -304,5 +305,80 @@
     },
     "Footer": {
         "rights": "Todos los derechos reservados."
+    },
+    "Chat": {
+        "open": "Abrir chat",
+        "close": "Cerrar chat",
+        "title": "Asistente de Edison",
+        "status": "Respuestas automáticas",
+        "teaser": "¿Tienes un proyecto en mente? Te ayudo a cotizarlo.",
+        "dismiss": "Cerrar mensaje",
+        "greeting": "¡Hola! Soy el asistente virtual de Edison. Puedo ayudarte a cotizar un proyecto o contarte sobre su experiencia. ¿Qué te gustaría hacer?",
+        "menuPrompt": "¿En qué más te puedo ayudar?",
+        "placeholder": "Escribe un mensaje…",
+        "send": "Enviar",
+        "typing": "Escribiendo…",
+        "options": {
+            "quote": "Cotizar un proyecto",
+            "experience": "Experiencia de Edison",
+            "services": "Servicios",
+            "projects": "Proyectos",
+            "tech": "Tecnologías",
+            "contact": "Hablar con Edison",
+            "ai": "¿Eres una IA?",
+            "menu": "Volver al menú",
+            "cancel": "Cancelar",
+            "quoteSend": "Enviar por correo"
+        },
+        "answers": {
+            "experience": "Edison es ingeniero de sistemas y construye software desde 2017. Esta es su trayectoria:",
+            "services": "Estos son los servicios que ofrece. Todos se cotizan según el proyecto:",
+            "projects": "Algunos de sus proyectos:",
+            "tech": "Trabaja principalmente con:",
+            "contact": "Puedes escribirle directamente:",
+            "ai": "Por ahora respondo con opciones predefinidas, sin IA. Edison está construyendo una versión con RAG que responderá preguntas libres usando su CV y sus proyectos como fuente.",
+            "fallback": "Todavía no entiendo preguntas libres. Elige una de estas opciones o escríbele a Edison directamente."
+        },
+        "links": {
+            "section": "Ver sección",
+            "email": "Enviar correo",
+            "github": "GitHub",
+            "linkedin": "LinkedIn"
+        },
+        "quote": {
+            "start": "¡Genial! ¿Qué tipo de proyecto tienes en mente?",
+            "types": [
+                "Sitio web",
+                "Tienda en línea",
+                "Backend / API",
+                "Cloud / DevOps",
+                "Automatización con IA",
+                "Otro"
+            ],
+            "timeline": "¿Para cuándo lo necesitas?",
+            "timelines": [
+                "Lo antes posible",
+                "En 1 a 3 meses",
+                "Sin fecha definida"
+            ],
+            "description": "Cuéntame en pocas palabras de qué se trata.",
+            "descriptionPlh": "Describe tu proyecto…",
+            "name": "¿Cómo te llamas?",
+            "namePlh": "Tu nombre",
+            "email": "¿A qué correo te puede responder Edison?",
+            "emailPlh": "tu@correo.com",
+            "invalidEmail": "Ese correo no parece válido, ¿lo revisas?",
+            "summary": "Este es el resumen de tu solicitud:",
+            "labels": {
+                "type": "Tipo",
+                "timeline": "Plazo",
+                "description": "Descripción",
+                "name": "Nombre",
+                "email": "Correo"
+            },
+            "restart": "Empezar de nuevo",
+            "sent": "¡Listo! Se abrió tu aplicación de correo con la solicitud. Edison te responderá lo antes posible.",
+            "subject": "Cotización"
+        }
     }
 }

@@ -5,6 +5,7 @@ import Icon from '../Icon';
 import useList from '../../hooks/useList';
 import Profile from '../../assets/perfil.jpg'
 import { profile } from '../../data/profile';
+import { openChat } from '../chat/ChatWidget';
 
 const companies = ['Bancolombia', 'Tech and Solve','CODALTEC', 'CIAC', 'Inter-telco', 'Fundación FES'];
 
@@ -29,6 +30,10 @@ const Home = () => {
                 <div className="home__buttons">
                     <a href="#projects" className="button">{t('Home.ctaWork')}</a>
                     <a href="#contact" className="button button--outline">{t('Home.ctaContact')}</a>
+                    <button type="button" className="button button--outline" onClick={openChat}>
+                        <Icon name="message" size={16} />
+                        {t('Home.ctaAssistant')}
+                    </button>
                 </div>
 
                 <div className="home__meta">

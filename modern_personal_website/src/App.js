@@ -10,6 +10,7 @@ import Projects from './components/projects/Projects'
 import Experience from './components/experience/Experience'
 import Contact from './components/contact/Contact'
 import Footer from './components/footer/Footer'
+import ChatWidget from './components/chat/ChatWidget'
 
 const App = () => {
   const { ready } = useTranslation();
@@ -33,6 +34,7 @@ const App = () => {
         <Contact />
       </main>
       <Footer />
+      <ChatWidget />
     </>
   )
 }
