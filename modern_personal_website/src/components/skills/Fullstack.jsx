@@ -33,6 +33,14 @@ const FullStack = () => {
                         </div>
                     </div>
 
+                    <div className="skills__data">
+                        <i class='bx bx-badge-check' ></i>
+                        <div>
+                            <h3 className="skills__name">{t('Skill.databases')}</h3>
+                            <span className="skills__level">{t('Skill.level')}</span>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div className="skills__group">
@@ -57,6 +65,14 @@ const FullStack = () => {
                         <i class='bx bx-badge-check' ></i>
                         <div>
                             <h3 className="skills__name">SQL</h3>
+                            <span className="skills__level">{t('Skill.level')}</span>
+                        </div>
+                    </div>
+
+                    <div className="skills__data">
+                        <i class='bx bx-badge-check' ></i>
+                        <div>
+                            <h3 className="skills__name">{t('Skill.ai')}</h3>
                             <span className="skills__level">{t('Skill.level')}</span>
                         </div>
                     </div>

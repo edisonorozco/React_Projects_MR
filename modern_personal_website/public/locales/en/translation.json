@@ -32,7 +32,9 @@
         "fullStack": "Full Stack Developer",
         "level": "Advanced",
         "devOps": "DevOps",
-        "infra": "Infrastructure as code"
+        "infra": "Infrastructure as code",
+        "databases": "Databases",
+        "ai": "AI"
     },
     "Services": {
         "backend": "Backend Developer",
