@@ -1,89 +1,165 @@
 {
-    "Header": {
-        "home": "Inicio",
-        "about": "Acerca de",
-        "skills": "Habilidades",
-        "services": "Servicios",
-        "portafolio": "Portafolio",
-        "contact": "Contacto"
-    },
-    "Home": {
-        "greeting": "Hola, soy",
-        "profession": "Desarrollador de software",
-        "description": "Bienvenido a mi pagina web, soy Ingeniero de Sistemas con amplia experiencia en el desarrollo de software con un nivel senior, espero que podamos construir proyectos juntos",
-        "contactMe": "Contactame",
-        "scroll": "Desplazarse abajo"
-    },
-    "About": {
-        "aboutMe": "Acerca de mí",
-        "introduction": "Mi introducción",
+    "nav": {
+        "about": "Sobre mí",
         "experience": "Experiencia",
-        "experienceYears": "5 años trabajando",
-        "projects": "Completados",
-        "projectCount": "10 + proyectos",
-        "support": "Soporte",
-        "supporOnline": "Parcial",
-        "description": "Ingeniero de sistemas con amplia experiencia en el desarrollo de software, me gusta explorar y aprender acerca de nuevas tecnologías y técnicas de desarrollo, con un buen liderazgo y curiosidad que me ha llevado a ser un gran autodidacta. Amante de la naturaleza y con la esperanza de contribuir a un mundo mejor.",
-        "downCV": "Descargar CV"
-    },
-    "Skill": {
-        "skill": "Habilidades",
-        "description": "Mi nivel técnico",
-        "fullStack": "Full Stack Developer",
-        "level": "Avanzado",
-        "devOps": "DevOps",
-        "infra": "Infraestructura como código",
-        "databases": "Bases de datos",
-        "ai": "IA"
-    },
-    "Services": {
-        "backend": "Backend Developer",
-        "frontend": "Frontend Developer",
-        "devops": "DevOps Engineer",
+        "projects": "Proyectos",
+        "lab": "AI Lab",
         "services": "Servicios",
-        "desc": "Lo que ofrezco",
-        "viewMore": "Ver más",
-        "backendDesc": "Mis servicios como backend developer constan de:",
-        "frontendDesc": "Mis servicios como frontend developer constan de:",
-        "devopsDesc": "Mis servicios como ingeniero DevOps constan de:",
-        "db": "Diseño, creación e implementación de bases de datos SQL y NoSQL",
-        "java": "Desarrollo de aplicativos del lado del servidor con diferentes lenguajes y frameworks",
-        "practices": "Desarrollo de software con buenas prácticas para garantizar mantenimiento y escalabilidad",
-        "linux": "Manejo de servidores Linux",
-        "fron": "Creación de páginas web, e-commerce",
-        "desktop": "Creación de aplicativos de escritorio",
-        "pipelines": "Automatización para generar procesos de Integración y despliegues continuos (CI/CD)",
-        "aws": "Implementación de servicios en la nube de AWS",
-        "ascode": "Automatización de despliegues de servicios de AWS con infraestructura como Código",
-        "docker": "Automatización de despliegues de aplicaciones del lado del servidor con docker y kubernetes",
-        "scrum": "Scrum"
+        "contact": "Contacto",
+        "talk": "Hablemos",
+        "openMenu": "Abrir menú",
+        "closeMenu": "Cerrar menú",
+        "toLight": "Cambiar a modo claro",
+        "toDark": "Cambiar a modo oscuro",
+        "switchLang": "Switch to English"
     },
-    "Qualification": {
-        "Trajectory": "Trayectoria",
-        "journey": "Mi viaje personal",
-        "qualification": "Trayectoria",
-        "education": "Educación",
-        "ing": "Ingeniería en sistemas",
-        "tec": "Tecnología en Análisis y desarrollo de sistemas de información​ ",
-        "job": "Experiencia",
-        "exp1": "Desarrollador de software",
-        "exp2": "Desarrollador Java",
-        "exp3": "Desarrollador Java",
-        "exp4": "Desarrollador Java",
-        "exp5": "Ingeniero de software"
+    "hero": {
+        "location": "edison orozco · colombia",
+        "available": "abierto a roles de AI / backend",
+        "titleA": "6 años construyendo software.",
+        "titleB": "Ahora, construyendo sistemas de IA.",
+        "role": "Software Engineer @ Bancolombia",
+        "stack": "Java · AWS · React · Angular · RAG · LangChain · LangGraph",
+        "intro": "Durante los últimos años he construido software para entornos reales. Ahora estoy aplicando esa experiencia a sistemas de IA, empezando por RAG, agentes y aplicaciones que trabajan con datos reales.",
+        "viewProjects": "Ver proyectos ↓",
+        "cv": "CV (PDF) ↓",
+        "photoAlt": "Foto de Edison Orozco"
     },
-    "Contact": {
-        "title": "Ponerse en contacto",
-        "subtitle": "Contáctame",
-        "talk": "Háblame",
-        "write": "Escríbeme tu proyecto",
+    "kb": {
+        "title": "Personal knowledge base",
+        "tag": "rag · cv + proyectos",
+        "intro": "Pregunta sobre mi experiencia. Las respuestas salen de mi CV y de la documentación de mis proyectos.",
+        "label": "Tu pregunta",
+        "ask": "Preguntar",
+        "asking": "Buscando…",
+        "tryWith": "prueba con",
+        "sources": "fuentes:",
+        "status": "building · respuestas de ejemplo",
+        "arch": "react → api gateway → lambda → pgvector",
+        "offline": "Por ahora solo respondo las preguntas de ejemplo. El backend con RAG está en construcción; pronto podrás preguntar lo que quieras.",
+        "error": "No pude responder en este momento. Intenta de nuevo en un rato.",
+        "questions": [
+            {
+                "q": "¿Qué experiencia tiene con AWS?",
+                "a": "En Bancolombia trabaja con servicios de AWS en entornos empresariales. En sus proyectos personales despliega sitios en S3 + CloudFront + Route 53, con la infraestructura en CloudFormation y pipelines de GitHub Actions.",
+                "src": ["cv.md", "proyectos/plataforma-despliegue.md"]
+            },
+            {
+                "q": "¿Qué proyectos ha construido?",
+                "a": "Una plataforma de despliegue para sus sitios (GitHub Actions → S3 + CloudFront), el sitio de la Corporación Profecan, una página de arriendo y, en construcción, un buscador semántico de reseñas de películas con RAG.",
+                "src": ["proyectos/", "ai-lab.md"]
+            },
+            {
+                "q": "¿Qué experiencia tiene con Java?",
+                "a": "Java es su lenguaje principal: Spring Boot, APIs y microservicios en Bancolombia, y antes como desarrollador Java en CODALTEC, la Corporación de la Industria Aeronáutica Colombiana e Inter-telco.",
+                "src": ["cv.md", "experiencia.md"]
+            },
+            {
+                "q": "¿Por qué está aprendiendo IA?",
+                "a": "Quiere aplicar lo que sabe de software empresarial a sistemas con LLMs: cómo se comportan con datos reales, cómo evaluarlos y cómo llevarlos a producción sin exponer credenciales.",
+                "src": ["now.md"]
+            },
+            {
+                "q": "¿Qué sabe de RAG?",
+                "a": "Está construyendo su primer sistema RAG: embeddings en Supabase pgvector, orquestación con LangChain y LangGraph, y un backend en Lambda. Esta knowledge base es ese sistema.",
+                "src": ["ai-lab.md", "proyectos/movie-search.md"]
+            }
+        ]
+    },
+    "about": {
+        "label": "01 — Sobre mí",
+        "statementA": "Llevo 6 años construyendo software para bancos y empresas.",
+        "statementB": "Ahora estoy aprendiendo a construir sistemas de IA, y este sitio es mi laboratorio.",
+        "timelineLabel": "Trayectoria",
+        "timeline": [
+            { "year": "2017", "title": "Primer trabajo" },
+            { "year": "2019", "title": "Backend con Java" },
+            { "year": "2021", "title": "Sistemas empresariales" },
+            { "year": "2024", "title": "Frontend + AWS" },
+            { "year": "2026", "title": "AI Engineering", "now": true }
+        ]
+    },
+    "experience": {
+        "label": "02 — Experiencia",
+        "jobs": [
+            { "org": "Bancolombia", "role": "Software Engineer", "dates": "[AAAA] — hoy", "current": true },
+            { "org": "Tech and Solve", "role": "Ingeniero de software", "dates": "2021 — [AAAA]" },
+            { "org": "Antes", "role": "Java en CODALTEC, CIAC, Inter-telco y Fundación FES", "dates": "2017 — 2021" }
+        ],
+        "toolsLabel": "Con lo que trabajo",
+        "learning": "aprendiendo y construyendo ahora"
+    },
+    "projects": {
+        "label": "03 — Proyectos",
+        "title": "Cosas que he construido",
+        "featured": {
+            "status": "BUILDING",
+            "title": "Buscador semántico de reseñas de películas",
+            "line": "Encuentra reseñas por lo que significan, no por palabras clave.",
+            "stack": "LangChain · Supabase pgvector · RAG",
+            "query": "algo como Interstellar, pero más corto",
+            "cta": "Ver en AI Lab"
+        },
+        "items": [
+            { "id": "deployPlatform", "title": "Plataforma de despliegue", "line": "Un pipeline por sitio: build, tests y deploy automático a AWS.", "tag": "LIVE" },
+            { "id": "profecan", "title": "Corporación Profecan", "line": "Sitio web para una corporación de bienestar animal y adopciones.", "tag": "SITIO WEB", "alt": "Captura del sitio de Profecan" },
+            { "id": "rionegro", "title": "Apartamento en arriendo", "line": "Página de arriendo con galería y contacto directo por WhatsApp.", "tag": "LANDING", "alt": "Captura de la página de arriendo en Alto Bonito, Rionegro" }
+        ],
+        "pipeline": [
+            { "name": "git push", "note": "trunk" },
+            { "name": "build + test", "note": "react" },
+            { "name": "gitleaks", "note": "secretos" },
+            { "name": "S3 sync", "note": "deploy" },
+            { "name": "CloudFront", "note": "invalidación" }
+        ]
+    },
+    "lab": {
+        "label": "04 — AI Lab",
+        "title": "Lo que estoy construyendo",
+        "items": [
+            { "status": "BUILDING", "name": "Asistente sobre mí", "stack": "RAG · LangChain · pgvector" },
+            { "status": "BUILDING", "name": "Buscador de reseñas", "stack": "embeddings · vector search" },
+            { "status": "EXPERIMENT", "name": "Agentes con LangGraph", "stack": "LangGraph" },
+            { "status": "EXPERIMENT", "name": "Bedrock + Strands", "stack": "AWS Bedrock" }
+        ],
+        "nowLabel": "aprendiendo",
+        "now": ["LangGraph", "evaluación de RAG", "búsqueda vectorial", "agentes"]
+    },
+    "services": {
+        "label": "05 — Servicios",
+        "title": "¿Tienes un negocio? Lo construimos juntos.",
+        "cta": "Cuéntame tu idea →",
+        "items": [
+            { "icon": "web", "title": "Página web", "line": "Tu negocio visible en internet, con un botón para que te escriban." },
+            { "icon": "app", "title": "Aplicación web", "line": "Pedidos, clientes o inventario en un solo lugar, no en Excel." },
+            { "icon": "auto", "title": "Automatización", "line": "Las tareas repetitivas se hacen solas." },
+            { "icon": "ai", "title": "IA para tu negocio", "line": "Un asistente que responde con la información de tu negocio." }
+        ],
+        "howLabel": "Cómo trabajamos",
+        "steps": [
+            { "title": "Hablamos", "line": "Me cuentas qué necesitas." },
+            { "title": "Propuesta", "line": "Te digo qué haría, en cuánto tiempo y cuánto cuesta." },
+            { "title": "Construyo", "line": "Ves avances mientras lo construyo." },
+            { "title": "Lanzamos", "line": "Lo publico y queda funcionando." }
+        ]
+    },
+    "contact": {
+        "label": "06 — Contacto",
+        "title": "¿Tienes un proyecto en mente?",
+        "subtitle": "Cuéntame qué quieres construir.",
+        "reasonLegend": "Te escribo por",
+        "reasons": {
+            "biz": { "label": "Mi negocio", "placeholder": "¿Qué quieres construir?", "subject": "Proyecto para mi negocio" },
+            "job": { "label": "Oferta laboral", "placeholder": "Cuéntame del rol y del equipo.", "subject": "Oportunidad laboral" }
+        },
         "name": "Nombre",
-        "email": "Correo",
-        "project": "Proyecto",
-        "plh1": "Inserta tu nombre",
-        "plh2": "Inserta tu correo",
-        "plh3": "Escribe tu proyecto",
+        "email": "Email",
+        "message": "¿Qué quieres construir?",
         "send": "Enviar mensaje",
-        "writeMe": "Escríbeme"
+        "sent": "Se abrió tu correo con el mensaje listo. Si no se abrió, escríbeme a"
+    },
+    "footer": {
+        "deploy": "último deploy",
+        "local": "build local"
     }
 }

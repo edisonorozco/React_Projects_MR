@@ -1,0 +1,92 @@
+.experience {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.job {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.job:first-child {
+  padding-top: 0;
+}
+
+.job__org {
+  flex: 1 1 260px;
+  min-width: 0;
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.job__role {
+  flex: 1 1 200px;
+  min-width: 0;
+  color: var(--ink-2);
+}
+
+.job__dates {
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.job__dates--current {
+  color: var(--live);
+}
+
+/*=============================== TOOLS =============================*/
+.tools {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tools .eyebrow {
+  font-weight: 400;
+}
+
+.tools__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  height: 34px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  border: 1px solid var(--rule-2);
+  background: var(--paper);
+  font-size: 14px;
+}
+
+.chip--ai {
+  border-color: var(--accent);
+  background: transparent;
+  color: var(--accent);
+}
+
+.chip--ai .dot,
+.tools__legend .dot {
+  width: 6px;
+  height: 6px;
+  color: var(--accent);
+}
+
+.tools__legend {
+  font-size: 13px;
+  color: var(--muted);
+}

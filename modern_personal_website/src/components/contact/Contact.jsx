@@ -1,100 +1,100 @@
-import React from 'react'
-import { useTranslation } from 'react-i18next';
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import './contact.css'
+import { profile } from '../../data/profile'
+import { DownloadIcon, GithubIcon, LinkedinIcon, MailIcon } from '../ui/Icons'
+
+const REASONS = ['biz', 'job']
+
+// Builds a mailto: link so the form works on a static site without a backend.
+export const buildMailto = ({ to, subject, name, email, message }) => {
+    const body = `${message}\n\n— ${name}${email ? ` (${email})` : ''}`
+    return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+}
 
 const Contact = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation()
+    const [reason, setReason] = useState('biz')
+    const [form, setForm] = useState({ name: '', email: '', message: '' })
+    const [sent, setSent] = useState(false)
+
+    const onChange = (event) => setForm({ ...form, [event.target.name]: event.target.value })
+
+    const onSubmit = (event) => {
+        event.preventDefault()
+        window.location.href = buildMailto({
+            to: profile.email,
+            subject: `${t(`contact.reasons.${reason}.subject`)} — ${form.name}`,
+            ...form,
+        })
+        setSent(true)
+    }
+
     return (
-        <section className="contact section" id="contact">
-
-            <h2 className="section__title">{t('Contact.title')}</h2>
-            <span className="section__subtitle">{t('Contact.subtitle')}</span>
-
-            <div className="contact__container container grid">
-                <div className="contact__content">
-                    <h3 className="contact__title">{t('Contact.talk')}</h3>
-
-                    <div className="contact__info">
-                        <div className="contact__card">
-                            <i className="bx bx-mail-send contact__card-icon"></i>
-
-                            <h3 className="contact__card-title">Email</h3>
-                            <span className="contact__card-data">edison.orozco@outlook.com</span>
-
-                            <a href="mailto:exampleemail@gmail.com" className="contact__button">
-                                {t('Contact.writeMe')}
-                                <i className="bx bx-right-arrow-alt contact__button-icon"></i></a>
-                        </div>
-
-                        {/* <div className="contact__card">
-                            <i className="bx bxl-whatsapp contact__card-icon"></i>
-
-                            <h3 className="contact__card-title">Whatsapp</h3>
-                            <span className="contact__card-data">999-888-777</span>
-
-                            <a href="" className="contact__button">
-                                {t('Contact.writeMe')}
-                                <i className="bx bx-right-arrow-alt contact__button-icon"></i></a>
-    </div>*/}
-
-                        <div className="contact__card">
-                            <i className="bx bxl-messenger contact__card-icon"></i>
-                            <h3 className="contact__card-title">Messenger</h3>
-                            <span className="contact__card-data">edison.orozcocarmona</span>
-
-                            <a href="https://www.facebook.com/edison.orozcocarmona" className="contact__button" target='_blank'>
-                                {t('Contact.writeMe')}
-                                <i className="bx bx-right-arrow-alt contact__button-icon"></i></a>
-                        </div>
-
+        <section id="contact" className="section" aria-labelledby="contact-title">
+            <div className="container contact">
+                <div className="contact__intro reveal">
+                    <span className="section__label">{t('contact.label')}</span>
+                    <h2 id="contact-title" className="contact__title">{t('contact.title')}</h2>
+                    <p className="contact__subtitle">{t('contact.subtitle')}</p>
+                    <a href={`mailto:${profile.email}`} className="btn btn--dark contact__email">
+                        <MailIcon /> {profile.email}
+                    </a>
+                    <div className="contact__links">
+                        <a href={profile.github} target="_blank" rel="noreferrer" className="btn btn--outline">
+                            <GithubIcon size={16} /> GitHub
+                        </a>
+                        {profile.linkedin && (
+                            <a href={profile.linkedin} target="_blank" rel="noreferrer" className="btn btn--outline">
+                                <LinkedinIcon size={16} /> LinkedIn
+                            </a>
+                        )}
+                        {profile.cv && (
+                            <a href={profile.cv} download className="btn btn--outline">
+                                <DownloadIcon size={16} /> CV
+                            </a>
+                        )}
                     </div>
                 </div>
 
-                <div className="contact__content">
-                    <h3 className="contact__title">{t('Contact.write')}</h3>
-
-                    <form className="contact__form">
-
-                        <div className="contact__form-div">
-                            <label className="contact__form-tag">{t('Contact.name')}</label>
-                            <input type="text" name="name" className="contact__form-input" placeholder={t('Contact.plh1')} />
-                        </div>
-
-                        <div className="contact__form-div">
-                            <label className="contact__form-tag">{t('Contact.email')}</label>
-                            <input type="email" name="email" className="contact__form-input" placeholder={t('Contact.plh2')} />
-                        </div>
-
-                        <div className="contact__form-div contact__form-area">
-                            <label className="contact__form-tag">{t('Contact.project')}</label>
-                            <textarea name="project" cols="30" rows="10" className='contact__form-input' placeholder={t('Contact.plh3')}>
-
-                            </textarea>
-                        </div>
-
-                        <button href="#contact" className="button button--flex">
-                            {t('Contact.send')}
-                            <svg
-                                class="button__icon"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
+                <form className="contact__form reveal" onSubmit={onSubmit}>
+                    <fieldset className="contact__reasons">
+                        <legend className="visually-hidden">{t('contact.reasonLegend')}</legend>
+                        {REASONS.map((id) => (
+                            <button
+                                key={id}
+                                type="button"
+                                className={`contact__reason${reason === id ? ' is-active' : ''}`}
+                                aria-pressed={reason === id}
+                                onClick={() => setReason(id)}
                             >
-                                <path
-                                    d="M14.2199 21.9352C13.0399 21.9352 11.3699 21.1052 10.0499 17.1352L9.32988 14.9752L7.16988 14.2552C3.20988 12.9352 2.37988 11.2652 2.37988 10.0852C2.37988 8.91525 3.20988 7.23525 7.16988 5.90525L15.6599 3.07525C17.7799 2.36525 19.5499 2.57525 20.6399 3.65525C21.7299 4.73525 21.9399 6.51525 21.2299 8.63525L18.3999 17.1252C17.0699 21.1052 15.3999 21.9352 14.2199 21.9352ZM7.63988 7.33525C4.85988 8.26525 3.86988 9.36525 3.86988 10.0852C3.86988 10.8052 4.85988 11.9052 7.63988 12.8252L10.1599 13.6652C10.3799 13.7352 10.5599 13.9152 10.6299 14.1352L11.4699 16.6552C12.3899 19.4352 13.4999 20.4252 14.2199 20.4252C14.9399 20.4252 16.0399 19.4352 16.9699 16.6552L19.7999 8.16525C20.3099 6.62525 20.2199 5.36525 19.5699 4.71525C18.9199 4.06525 17.6599 3.98525 16.1299 4.49525L7.63988 7.33525Z"
-                                    fill="var(--container-color)"
-                                ></path>
-                                <path
-                                    d="M10.11 14.7052C9.92005 14.7052 9.73005 14.6352 9.58005 14.4852C9.29005 14.1952 9.29005 13.7152 9.58005 13.4252L13.16 9.83518C13.45 9.54518 13.93 9.54518 14.22 9.83518C14.51 10.1252 14.51 10.6052 14.22 10.8952L10.64 14.4852C10.5 14.6352 10.3 14.7052 10.11 14.7052Z"
-                                    fill="var(--container-color)"
-                                ></path>
-                            </svg>
-                        </button>
+                                {t(`contact.reasons.${id}.label`)}
+                            </button>
+                        ))}
+                    </fieldset>
 
-                    </form>
-                </div>
+                    <div className="contact__row">
+                        <label className="visually-hidden" htmlFor="contact-name">{t('contact.name')}</label>
+                        <input id="contact-name" name="name" type="text" required autoComplete="name"
+                            placeholder={t('contact.name')} value={form.name} onChange={onChange} className="contact__input" />
+                        <label className="visually-hidden" htmlFor="contact-email">{t('contact.email')}</label>
+                        <input id="contact-email" name="email" type="email" required autoComplete="email"
+                            placeholder={t('contact.email')} value={form.email} onChange={onChange} className="contact__input" />
+                    </div>
+
+                    <label className="visually-hidden" htmlFor="contact-message">{t('contact.message')}</label>
+                    <textarea id="contact-message" name="message" rows="4" required
+                        placeholder={t(`contact.reasons.${reason}.placeholder`)} value={form.message} onChange={onChange}
+                        className="contact__input contact__textarea" />
+
+                    <button type="submit" className="btn btn--dark">{t('contact.send')}</button>
+
+                    {sent && (
+                        <p className="contact__sent" role="status">
+                            {t('contact.sent')} <a href={`mailto:${profile.email}`}>{profile.email}</a>
+                        </p>
+                    )}
+                </form>
             </div>
         </section>
     )

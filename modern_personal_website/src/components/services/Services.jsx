@@ -1,202 +1,57 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useTranslation } from 'react-i18next'
 import './services.css'
-import { useTranslation } from 'react-i18next';
+import { useList } from '../../hooks/useList'
+import { AppIcon, AutomationIcon, ChatIcon, WebIcon } from '../ui/Icons'
+
+const ICONS = { web: WebIcon, app: AppIcon, auto: AutomationIcon, ai: ChatIcon }
 
 const Services = () => {
+    const { t } = useTranslation()
+    const items = useList('services.items')
+    const steps = useList('services.steps')
 
-    const [toggleState, setToggleState] = useState(0);
-
-    const toggleTab = (index) => {
-        setToggleState(index);
-    }
-
-    const { t } = useTranslation();
     return (
-        <section className="services section" id="services">
-            <h2 className="section__title">{t('Services.services')}</h2>
-            <span className="section__subtitle">{t('Services.desc')}</span>
-
-            <div className="services__container container grid">
-                <div className="services__content">
-                    <div>
-                        <i className="uil uil-web-grid services__icon"></i>
-                        <h3 className="services__title">
-                            Backend <br /> Developer</h3>
+        <section id="services" className="services" aria-labelledby="services-title">
+            <div className="container">
+                <div className="section__head services__head">
+                    <div className="section__head-main">
+                        <span className="section__label">{t('services.label')}</span>
+                        <h2 id="services-title" className="section__title services__title">{t('services.title')}</h2>
                     </div>
-
-                    <span className="services__button" onClick={() => toggleTab(1)}>
-                        {t('Services.viewMore')}
-                        <i className="uil uil-arrow-right services__button-icon"></i></span>
-
-                    <div className={toggleState === 1 ? "services__modal active-modal" : "services__modal"}>
-                        <div className="services__modal-content">
-                            <i onClick={() => toggleTab(0)} className="uil uil-times services__modal-close"></i>
-
-                            <h3 className="services__modal-title">
-                                Backend Developer
-                            </h3>
-
-                            <p className="services__modal-description">
-                                {t('Services.backendDesc')}
-                            </p>
-
-                            <ul className="services__modal-services grid">
-
-                                <li className="services__modal-service">
-                                    <i className="uil uil-check-circle services__modal-icon">
-                                        <p className="services__modal-info">
-                                            {t('Services.db')}
-                                        </p>
-                                    </i>
-                                </li>
-
-                                <li className="services__modal-service">
-                                    <i className="uil uil-check-circle services__modal-icon">
-                                        <p className="services__modal-info">
-                                            {t('Services.java')}
-                                        </p>
-                                    </i>
-                                </li>
-
-                                <li className="services__modal-service">
-                                    <i className="uil uil-check-circle services__modal-icon">
-                                        <p className="services__modal-info">
-                                            {t('Services.practices')}
-                                        </p>
-                                    </i>
-                                </li>
-
-                                <li className="services__modal-service">
-                                    <i className="uil uil-check-circle services__modal-icon">
-                                        <p className="services__modal-info">
-                                            {t('Services.linux')}
-                                        </p>
-                                    </i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <a href="#contact" className="btn services__cta">{t('services.cta')}</a>
                 </div>
 
-                <div className="services__content">
-                    <div>
-                        <i className="uil uil-arrow services__icon"></i>
-                        <h3 className="services__title">
-                            Frontend <br /> Developer
-                        </h3>
-                    </div>
+                <ul className="services__grid">
+                    {items.map((item, index) => {
+                        const Icon = ICONS[item.icon] || WebIcon
+                        return (
+                            <li key={item.title} className="service reveal">
+                                <span className="service__icon"><Icon size={20} strokeWidth={1.7} /></span>
+                                <span className="service__num mono">{String(index + 1).padStart(2, '0')}</span>
+                                <h3 className="service__title">{item.title}</h3>
+                                <p className="service__line">{item.line}</p>
+                            </li>
+                        )
+                    })}
+                </ul>
 
-                    <span className="services__button" onClick={() => toggleTab(2)}>
-                        {t('Services.viewMore')}
-                        <i className="uil uil-arrow-right services__button-icon"></i></span>
-
-                    <div className={toggleState === 2 ? "services__modal active-modal" : "services__modal"}>
-                        <div className="services__modal-content">
-                            <i onClick={() => toggleTab(0)} className="uil uil-times services__modal-close"></i>
-
-                            <h3 className="services__modal-title">
-                                Frontend Developer
-                            </h3>
-
-                            <p className="services__modal-description">
-                                {t('Services.frontendDesc')}
-                            </p>
-
-                            <ul className="services__modal-services grid">
-
-                                <li className="services__modal-service">
-                                    <i className="uil uil-check-circle services__modal-icon">
-                                        <p className="services__modal-info">
-                                            {t('Services.fron')}
-                                        </p>
-                                    </i>
-                                </li>
-
-                                <li className="services__modal-service">
-                                    <i className="uil uil-check-circle services__modal-icon">
-                                        <p className="services__modal-info">
-                                            {t('Services.desktop')}
-                                        </p>
-                                    </i>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="services__content">
-                    <div>
-                        <i className="uil uil-edit services__icon"></i>
-                        <h3 className="services__title">
-                            DevOps <br /> Engineer
-                        </h3>
-                    </div>
-
-                    <span className="services__button" onClick={() => toggleTab(3)}>
-                        {t('Services.viewMore')}
-                        <i className="uil uil-arrow-right services__button-icon"></i></span>
-
-                    <div className={toggleState === 3 ? "services__modal active-modal" : "services__modal"}>
-                        <div className="services__modal-content">
-                            <i onClick={() => toggleTab(0)} className="uil uil-times services__modal-close"></i>
-
-                            <h3 className="services__modal-title">
-                                DevOps Engineer
-                            </h3>
-
-                            <p className="services__modal-description">
-                                {t('Services.devopsDesc')}
-                            </p>
-
-                            <ul className="services__modal-services grid">
-
-                                <li className="services__modal-service">
-                                    <i className="uil uil-check-circle services__modal-icon">
-                                        <p className="services__modal-info">
-                                            {t('Services.pipelines')}
-                                        </p>
-                                    </i>
-                                </li>
-
-                                <li className="services__modal-service">
-                                    <i className="uil uil-check-circle services__modal-icon">
-                                        <p className="services__modal-info">
-                                            {t('Services.aws')}
-                                        </p>
-                                    </i>
-                                </li>
-
-                                <li className="services__modal-service">
-                                    <i className="uil uil-check-circle services__modal-icon">
-                                        <p className="services__modal-info">
-                                            {t('Services.ascode')}
-                                        </p>
-                                    </i>
-                                </li>
-
-                                <li className="services__modal-service">
-                                    <i className="uil uil-check-circle services__modal-icon">
-                                        <p className="services__modal-info">
-                                            {t('Services.docker')}
-                                        </p>
-                                    </i>
-                                </li>
-
-                                <li className="services__modal-service">
-                                    <i className="uil uil-check-circle services__modal-icon">
-                                        <p className="services__modal-info">
-                                            {t('Services.scrum')}
-                                        </p>
-                                    </i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                <div className="steps reveal">
+                    <h3 className="eyebrow steps__label">{t('services.howLabel')}</h3>
+                    <ol className="steps__list">
+                        {steps.map((step, index) => (
+                            <li key={step.title} className="step">
+                                <div className="step__track">
+                                    <span className="step__num mono">{index + 1}</span>
+                                    <span className="step__line" />
+                                </div>
+                                <span className="step__title">{step.title}</span>
+                                <span className="step__text">{step.line}</span>
+                            </li>
+                        ))}
+                    </ol>
                 </div>
             </div>
-
-
         </section>
     )
 }

@@ -70,7 +70,10 @@ jobs:
       - name: Build
         if: inputs.node-build
         # CI=false: Actions sets CI=true, which makes react-scripts fail on lint warnings.
-        run: CI=false npx react-scripts build
+        # REACT_APP_GIT_SHA / REACT_APP_BUILD_DATE: shown as "last deploy" by sites that read them.
+        env:
+          REACT_APP_GIT_SHA: ${{ github.sha }}
+        run: REACT_APP_BUILD_DATE=$(date -u +%F) CI=false npx react-scripts build
 
       - name: Prepare site
         run: |

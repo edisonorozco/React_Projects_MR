@@ -1,45 +1,22 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import './footer.css'
+import { build } from '../../data/profile'
 
 const Footer = () => {
+    const { t } = useTranslation()
+    const year = new Date().getFullYear()
+
     return (
         <footer className="footer">
-            <div className="footer__container container">
-                <h1 className="footer__title">Edison</h1>
-
-                <ul className="footer__list">
-                    <li >
-                        <a href="#about" className="footer__link">About</a>
-                    </li>
-
-                    <li >
-                        <a href="#portafolio" className="footer__link">Projects</a>
-                    </li>
-
-                    <li >
-                        <a href="#services" className="footer__link">Services</a>
-                    </li>
-                </ul>
-
-                <div className="footer__social">
-
-                    <a href="https://www.facebook.com/edison.orozcocarmona" className="footer__social-link" target="_blank">
-                        <i class="bx bxl-facebook"></i>
-                    </a>
-
-                    <a href="https://www.instagram.com/edison.orozco.c/?hl=es" className="footer__social-link" target="_blank">
-                        <i class="bx bxl-instagram"></i>
-                    </a>
-
-                    <a href="https://github.com/edisonorozco" className="footer__social-link" target="_blank">
-                        <i class="bx bxl-twitter"></i>
-                    </a>
-
-                </div>
-
-                <span className="footer__copy">
-                    &#169; Software Masters. All rigths reserved
+            <div className="container footer__inner mono">
+                <span>Edison Orozco · {year}</span>
+                <span>
+                    {build.commit
+                        ? `${t('footer.deploy')} ${build.date} · ${build.commit}`
+                        : t('footer.local')}
                 </span>
+                <span>react → s3 → cloudfront</span>
             </div>
         </footer>
     )
