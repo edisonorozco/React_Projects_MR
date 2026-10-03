@@ -1,100 +1,92 @@
-import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import React from 'react'
+import { useTranslation } from 'react-i18next';
 import './contact.css'
-import { profile } from '../../data/profile'
-import { DownloadIcon, GithubIcon, LinkedinIcon, MailIcon } from '../ui/Icons'
+import Icon from '../Icon';
+import { profile } from '../../data/profile';
 
-const REASONS = ['biz', 'job']
-
-// Builds a mailto: link so the form works on a static site without a backend.
+/* No backend yet: the form opens the visitor's mail app with the message pre-filled */
 export const buildMailto = ({ to, subject, name, email, message }) => {
-    const body = `${message}\n\n— ${name}${email ? ` (${email})` : ''}`
-    return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-}
+    const body = `${message}\n\n— ${name} (${email})`;
+    return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+};
+
+const channels = [
+    { icon: 'mail', title: 'Email', value: profile.email, href: `mailto:${profile.email}` },
+    { icon: 'linkedin', title: 'LinkedIn', value: 'Edison Orozco', href: profile.linkedin },
+    { icon: 'github', title: 'GitHub', value: 'edisonorozco', href: profile.github }
+].filter((channel) => channel.href);
 
 const Contact = () => {
-    const { t } = useTranslation()
-    const [reason, setReason] = useState('biz')
-    const [form, setForm] = useState({ name: '', email: '', message: '' })
-    const [sent, setSent] = useState(false)
+    const { t } = useTranslation();
 
-    const onChange = (event) => setForm({ ...form, [event.target.name]: event.target.value })
-
-    const onSubmit = (event) => {
-        event.preventDefault()
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = new FormData(event.target);
+        const name = form.get('name');
         window.location.href = buildMailto({
             to: profile.email,
-            subject: `${t(`contact.reasons.${reason}.subject`)} — ${form.name}`,
-            ...form,
-        })
-        setSent(true)
-    }
+            subject: `${t('Contact.subject')} ${name}`,
+            name,
+            email: form.get('email'),
+            message: form.get('message'),
+        });
+    };
 
     return (
-        <section id="contact" className="section" aria-labelledby="contact-title">
-            <div className="container contact">
-                <div className="contact__intro reveal">
-                    <span className="section__label">{t('contact.label')}</span>
-                    <h2 id="contact-title" className="contact__title">{t('contact.title')}</h2>
-                    <p className="contact__subtitle">{t('contact.subtitle')}</p>
-                    <a href={`mailto:${profile.email}`} className="btn btn--dark contact__email">
-                        <MailIcon /> {profile.email}
-                    </a>
-                    <div className="contact__links">
-                        <a href={profile.github} target="_blank" rel="noreferrer" className="btn btn--outline">
-                            <GithubIcon size={16} /> GitHub
-                        </a>
-                        {profile.linkedin && (
-                            <a href={profile.linkedin} target="_blank" rel="noreferrer" className="btn btn--outline">
-                                <LinkedinIcon size={16} /> LinkedIn
-                            </a>
-                        )}
-                        {profile.cv && (
-                            <a href={profile.cv} download className="btn btn--outline">
-                                <DownloadIcon size={16} /> CV
-                            </a>
-                        )}
-                    </div>
+        <section className="contact section" id="contact">
+            <div className="container">
+                <div className="section__head">
+                    <span className="eyebrow">{t('Contact.eyebrow')}</span>
+                    <h2 className="section__title">
+                        {t('Contact.titleA')} <span>{t('Contact.titleB')}</span>
+                    </h2>
+                    <p className="section__desc">{t('Contact.desc')}</p>
                 </div>
 
-                <form className="contact__form reveal" onSubmit={onSubmit}>
-                    <fieldset className="contact__reasons">
-                        <legend className="visually-hidden">{t('contact.reasonLegend')}</legend>
-                        {REASONS.map((id) => (
-                            <button
-                                key={id}
-                                type="button"
-                                className={`contact__reason${reason === id ? ' is-active' : ''}`}
-                                aria-pressed={reason === id}
-                                onClick={() => setReason(id)}
-                            >
-                                {t(`contact.reasons.${id}.label`)}
-                            </button>
+                <div className="contact__container">
+                    <ul className="contact__channels">
+                        {channels.map((channel) => (
+                            <li key={channel.title}>
+                                <a
+                                    href={channel.href}
+                                    className="contact__channel card"
+                                    target={channel.href.startsWith('http') ? '_blank' : undefined}
+                                    rel="noreferrer"
+                                >
+                                    <span className="icon-tile"><Icon name={channel.icon} /></span>
+                                    <div>
+                                        <h3>{channel.title}</h3>
+                                        <span>{channel.value}</span>
+                                    </div>
+                                    <Icon name="arrowRight" size={16} className="contact__arrow" />
+                                </a>
+                            </li>
                         ))}
-                    </fieldset>
+                    </ul>
 
-                    <div className="contact__row">
-                        <label className="visually-hidden" htmlFor="contact-name">{t('contact.name')}</label>
-                        <input id="contact-name" name="name" type="text" required autoComplete="name"
-                            placeholder={t('contact.name')} value={form.name} onChange={onChange} className="contact__input" />
-                        <label className="visually-hidden" htmlFor="contact-email">{t('contact.email')}</label>
-                        <input id="contact-email" name="email" type="email" required autoComplete="email"
-                            placeholder={t('contact.email')} value={form.email} onChange={onChange} className="contact__input" />
-                    </div>
-
-                    <label className="visually-hidden" htmlFor="contact-message">{t('contact.message')}</label>
-                    <textarea id="contact-message" name="message" rows="4" required
-                        placeholder={t(`contact.reasons.${reason}.placeholder`)} value={form.message} onChange={onChange}
-                        className="contact__input contact__textarea" />
-
-                    <button type="submit" className="btn btn--dark">{t('contact.send')}</button>
-
-                    {sent && (
-                        <p className="contact__sent" role="status">
-                            {t('contact.sent')} <a href={`mailto:${profile.email}`}>{profile.email}</a>
-                        </p>
-                    )}
-                </form>
+                    <form className="contact__form card" onSubmit={handleSubmit}>
+                        <div className="contact__row">
+                            <label className="contact__field">
+                                <span>{t('Contact.name')}</span>
+                                <input type="text" name="name" required placeholder={t('Contact.plhName')} />
+                            </label>
+                            <label className="contact__field">
+                                <span>{t('Contact.email')}</span>
+                                <input type="email" name="email" required placeholder={t('Contact.plhEmail')} />
+                            </label>
+                        </div>
+                        <label className="contact__field">
+                            <span>{t('Contact.message')}</span>
+                            <textarea name="message" rows="6" required placeholder={t('Contact.plhMessage')}></textarea>
+                        </label>
+                        <div className="contact__footer">
+                            <p>{t('Contact.note')}</p>
+                            <button type="submit" className="button">
+                                {t('Contact.send')} <Icon name="send" size={16} />
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </section>
     )

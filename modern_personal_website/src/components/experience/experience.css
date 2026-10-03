@@ -1,92 +1,98 @@
-.experience {
+.experience__grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.experience__column {
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md);
+}
+
+.experience__column-title {
   display: flex;
-  flex-direction: column;
-  gap: 56px;
-}
-
-.job {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px 24px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--rule);
-}
-
-.job:first-child {
-  padding-top: 0;
-}
-
-.job__org {
-  flex: 1 1 260px;
-  min-width: 0;
-  font-size: clamp(22px, 2.4vw, 30px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-.job__role {
-  flex: 1 1 200px;
-  min-width: 0;
-  color: var(--ink-2);
-}
-
-.job__dates {
-  font-size: 13px;
-  color: var(--muted);
-  white-space: nowrap;
-}
-
-.job__dates--current {
-  color: var(--live);
-}
-
-/*=============================== TOOLS =============================*/
-.tools {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.tools .eyebrow {
-  font-weight: 400;
-}
-
-.tools__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.chip {
-  height: 34px;
-  padding: 0 14px;
-  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  border-radius: 999px;
-  border: 1px solid var(--rule-2);
-  background: var(--paper);
-  font-size: 14px;
+  gap: 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 1.75rem;
 }
 
-.chip--ai {
+.experience__column-title .icon-tile {
+  width: 2.1rem;
+  height: 2.1rem;
+}
+
+.experience__list {
+  list-style: none;
+  position: relative;
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* Vertical line */
+.experience__list::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 1px;
+  background: var(--border);
+}
+
+.experience__item {
+  position: relative;
+  padding-left: 1.75rem;
+}
+
+.experience__item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--border-strong);
+}
+
+.experience__item:first-child::before {
   border-color: var(--accent);
-  background: transparent;
-  color: var(--accent);
+  background: var(--accent);
 }
 
-.chip--ai .dot,
-.tools__legend .dot {
-  width: 6px;
-  height: 6px;
-  color: var(--accent);
-}
-
-.tools__legend {
-  font-size: 13px;
+.experience__period {
+  font-size: 0.75rem;
+  font-weight: 600;
   color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.experience__role {
+  margin-top: 0.15rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--title);
+  line-height: 1.35;
+}
+
+.experience__company {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/*==================== Breakpoints ====================*/
+@media screen and (max-width: 860px) {
+  .experience__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .experience__column {
+    padding: 1.25rem;
+  }
 }

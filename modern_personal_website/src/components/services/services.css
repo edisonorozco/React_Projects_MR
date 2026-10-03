@@ -1,172 +1,86 @@
-/* A different background marks the switch from the career narrative to clients. */
-.services {
-  padding: 104px 0;
-  background: var(--band);
-  color: var(--band-ink);
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
 
-.services .section__label,
-.services .eyebrow {
-  color: var(--band-muted);
+.services__card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.services__head {
-  align-items: flex-end;
-  margin-bottom: 48px;
+.services__card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
 }
 
 .services__title {
-  max-width: 620px;
+  margin-top: 1.25rem;
+  font-size: var(--h3-size);
+  font-weight: 700;
 }
 
-.services__cta {
-  background: var(--band-ink);
-  color: var(--band);
+.services__desc {
+  margin-top: 0.6rem;
+  font-size: 0.875rem;
+  color: var(--muted);
 }
 
-.services__cta:hover {
-  opacity: 0.88;
-}
-
-.services__grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.services__bullets {
+  margin-top: 1.1rem;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  color: var(--text);
 }
 
-.service {
-  min-height: 250px;
-  padding: 24px;
-  border-radius: 16px;
-  background: var(--card);
-  color: var(--card-ink);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  transition: transform 0.2s ease;
+.services__bullets li {
+  position: relative;
+  padding-left: 0.9rem;
 }
 
-.service:hover {
-  transform: translateY(-3px);
-}
-
-.service__icon {
-  width: 44px;
-  height: 44px;
+.services__bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
-  background: var(--card-ink);
-  color: var(--card);
+  background: var(--muted);
+}
+
+.services__quote {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 1.4rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--title);
 }
 
-.service__num {
-  margin-top: 40px;
-  font-size: 12px;
-  color: var(--card-muted);
+.services__quote .icon {
+  transition: transform 0.2s;
 }
 
-.service__title {
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+.services__quote:hover .icon {
+  transform: translateX(3px);
 }
 
-.service__line {
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--card-muted);
-}
-
-/*=============================== STEPS =============================*/
-.steps {
-  margin-top: 56px;
-}
-
-.steps__label {
-  font-weight: 400;
-  margin-bottom: 20px;
-}
-
-.steps__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 28px 0;
-}
-
-.step {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.step__track {
-  display: flex;
-  align-items: center;
-}
-
-.step__num {
-  width: 36px;
-  height: 36px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  border: 1px solid var(--band-ink);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-}
-
-.step__line {
-  flex: 1;
-  height: 1px;
-  background: var(--band-rule);
-}
-
-.step:last-child .step__line {
-  visibility: hidden;
-}
-
-.step__title {
-  font-size: 17px;
-  font-weight: 600;
-}
-
-.step__text {
-  padding-right: 20px;
-  font-size: 14.5px;
-  color: var(--band-muted);
-}
-
-@media (max-width: 900px) {
+/*==================== Breakpoints ====================*/
+@media screen and (max-width: 960px) {
   .services__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 768px) {
-  .services {
-    padding: 72px 0;
-  }
-}
-
-@media (max-width: 560px) {
+@media screen and (max-width: 620px) {
   .services__grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .service {
-    min-height: 0;
-  }
-
-  .service__num {
-    margin-top: 16px;
+    grid-template-columns: 1fr;
   }
 }
