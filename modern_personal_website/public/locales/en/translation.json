@@ -8,7 +8,9 @@
         "contact": "Contact",
         "hire": "Hire Me",
         "menu": "Open menu",
-        "close": "Close menu"
+        "close": "Close menu",
+        "toDark": "Switch to dark mode",
+        "toLight": "Switch to light mode"
     },
     "Home": {
         "badge": "Available for new projects",

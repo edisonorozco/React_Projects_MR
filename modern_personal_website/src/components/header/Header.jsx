@@ -3,6 +3,7 @@ import './header.css'
 import { useTranslation } from 'react-i18next';
 import Languaje from '../Languaje/Languaje';
 import Icon from '../Icon';
+import useTheme from '../../hooks/useTheme';
 
 const links = ['home', 'about', 'services', 'projects', 'experience', 'contact'];
 
@@ -11,6 +12,7 @@ const Header = () => {
     const [open, setOpen] = useState(false);
     const [active, setActive] = useState('home');
     const [scrolled, setScrolled] = useState(false);
+    const { isDark, toggleTheme } = useTheme();
 
     /* Highlight the link of the section currently in view */
     useEffect(() => {
@@ -56,6 +58,14 @@ const Header = () => {
 
                 <div className="nav__actions">
                     <Languaje />
+                    <button
+                        className="nav__theme"
+                        onClick={toggleTheme}
+                        aria-label={isDark ? t('Header.toLight') : t('Header.toDark')}
+                        title={isDark ? t('Header.toLight') : t('Header.toDark')}
+                    >
+                        <Icon name={isDark ? 'sun' : 'moon'} size={17} />
+                    </button>
                     <a href="#contact" className="button button--small nav__hire">{t('Header.hire')}</a>
                     <button
                         className="nav__toggle"

@@ -43,7 +43,7 @@
 }
 
 .projects__status--building::before {
-  background: #d97706;
+  background: var(--warning);
 }
 
 .projects__title {

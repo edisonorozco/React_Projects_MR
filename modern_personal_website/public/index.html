@@ -8,8 +8,21 @@
       name="description"
       content="Edison Orozco — Software Engineer. Backend, cloud and applied AI."
     />
-    <meta name="theme-color" content="#f8fafc" />
-    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Apply the saved (or system) theme before React renders, to avoid a light/dark flash. -->
+    <script>
+      (function () {
+        var theme = 'light';
+        try {
+          var saved = localStorage.getItem('theme');
+          theme = saved === 'dark' || saved === 'light' ? saved
+            : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        } catch (e) {}
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
