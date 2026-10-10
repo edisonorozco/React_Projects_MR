@@ -1,5 +1,5 @@
 import React from 'react'
-import { act, render, screen } from '@testing-library/react'
+import { act, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import i18n, { es } from '../../testUtils/i18nForTests'
 import ChatWidget from './ChatWidget'
@@ -67,4 +67,17 @@ test('is honest when it does not understand a question', async () => {
     send('¿Cuál es tu color favorito?')
 
     expect(await screen.findByText(es.Chat.answers.fallback)).toBeInTheDocument()
+})
+
+test('header menu restarts the conversation', async () => {
+    await openChat()
+
+    send('¿Cuál es tu color favorito?')
+    await screen.findByText(es.Chat.answers.fallback)
+
+    userEvent.click(screen.getByRole('button', { name: es.Chat.more }))
+    userEvent.click(await screen.findByRole('menuitem', { name: es.Chat.restart }))
+
+    await waitFor(() => expect(screen.queryByText('¿Cuál es tu color favorito?')).not.toBeInTheDocument())
+    expect(await screen.findByText(es.Chat.greeting)).toBeInTheDocument()
 })

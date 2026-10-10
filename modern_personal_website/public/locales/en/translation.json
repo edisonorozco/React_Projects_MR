@@ -318,6 +318,10 @@
         "placeholder": "Type a message…",
         "send": "Send",
         "typing": "Typing…",
+        "today": "Today",
+        "more": "More options",
+        "showOptions": "Show options",
+        "restart": "Restart conversation",
         "options": {
             "quote": "Get a quote",
             "experience": "Edison's experience",

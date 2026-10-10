@@ -318,6 +318,10 @@
         "placeholder": "Escribe un mensaje…",
         "send": "Enviar",
         "typing": "Escribiendo…",
+        "today": "Hoy",
+        "more": "Más opciones",
+        "showOptions": "Ver opciones",
+        "restart": "Reiniciar conversación",
         "options": {
             "quote": "Cotizar un proyecto",
             "experience": "Experiencia de Edison",
