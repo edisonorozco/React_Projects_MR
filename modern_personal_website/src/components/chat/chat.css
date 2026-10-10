@@ -47,11 +47,74 @@
   transform: translateY(-2px);
 }
 
+/* Closed: the mascot itself is the button */
+.chat-fab--bot,
+.chat-fab--bot:hover {
+  background: transparent;
+}
+
+.chat-fab--bot .bot-avatar {
+  display: block;
+}
+
+/*==================== Mascot ====================*/
+.bot-avatar {
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.bot-avatar__eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: bot-blink 5s infinite;
+}
+
+@keyframes bot-blink {
+  0%, 93%, 100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.1);
+  }
+}
+
+/*==================== Contact shortcut (WhatsApp / email) ====================*/
+.contact-fab {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 5.5rem;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  color: var(--title);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.contact-fab:hover {
+  transform: translateY(-2px);
+}
+
+.contact-fab--whatsapp {
+  color: #ffffff;
+  background: #25d366;
+  border-color: #25d366;
+}
+
+.contact-fab--whatsapp:hover {
+  background: #1ebe5a;
+}
+
 /*==================== Invitation bubble ====================*/
 .chat-teaser {
   position: fixed;
-  right: 1.25rem;
-  bottom: 5.5rem;
+  right: 5.5rem;
+  bottom: 1.25rem;
   z-index: 200;
   display: flex;
   align-items: flex-start;
@@ -169,14 +232,6 @@
   display: none;
 }
 
-.chat__avatar {
-  flex-shrink: 0;
-  width: 2.6rem;
-  height: 2.6rem;
-  object-fit: cover;
-  border-radius: 50%;
-  background: var(--surface-muted);
-}
 
 .chat__heading {
   flex: 1;
@@ -289,8 +344,6 @@
   flex-shrink: 0;
   width: 1.9rem;
   height: 1.9rem;
-  object-fit: cover;
-  border-radius: 50%;
 }
 
 .chat__msg {
@@ -631,8 +684,7 @@
     padding: 0.5rem 0.5rem calc(0.5rem + env(safe-area-inset-bottom));
   }
 
-  .chat-widget--open .chat-fab,
-  .chat-widget--open .chat-teaser {
+  .chat-widget--open .chat-fab {
     display: none;
   }
 
@@ -647,9 +699,14 @@
     bottom: 1rem;
   }
 
-  .chat-teaser {
-    right: 1rem;
+  .contact-fab {
+    right: 1.25rem;
     bottom: 5.25rem;
+  }
+
+  .chat-teaser {
+    right: 5.25rem;
+    bottom: 1rem;
   }
 }
 
@@ -664,7 +721,8 @@
   .chat,
   .chat-teaser,
   .chat__menu-list,
-  .chat__typing span {
+  .chat__typing span,
+  .bot-avatar__eyes {
     animation: none;
   }
 }

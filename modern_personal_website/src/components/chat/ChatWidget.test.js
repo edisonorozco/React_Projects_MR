@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event'
 import i18n, { es } from '../../testUtils/i18nForTests'
 import ChatWidget from './ChatWidget'
 import { detectIntent, isValidEmail } from './intents'
+import { profile } from '../../data/profile'
 
 const openChat = async () => {
     render(<ChatWidget />)
@@ -80,4 +81,19 @@ test('header menu restarts the conversation', async () => {
 
     await waitFor(() => expect(screen.queryByText('¿Cuál es tu color favorito?')).not.toBeInTheDocument())
     expect(await screen.findByText(es.Chat.greeting)).toBeInTheDocument()
+})
+
+test('floating shortcut opens email until a WhatsApp number is set', () => {
+    const { unmount } = render(<ChatWidget />)
+    expect(screen.getByRole('link', { name: es.Chat.emailMe })).toHaveAttribute('href', expect.stringMatching(/^mailto:/))
+    unmount()
+
+    profile.whatsapp = '+57 300 123 4567'
+    try {
+        render(<ChatWidget />)
+        expect(screen.getByRole('link', { name: es.Chat.whatsapp }))
+            .toHaveAttribute('href', expect.stringMatching(/^https:\/\/wa\.me\/573001234567\?text=/))
+    } finally {
+        profile.whatsapp = ''
+    }
 })

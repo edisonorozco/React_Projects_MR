@@ -322,6 +322,10 @@
         "more": "Más opciones",
         "showOptions": "Ver opciones",
         "restart": "Reiniciar conversación",
+        "whatsapp": "Escríbeme por WhatsApp",
+        "emailMe": "Escríbeme un correo",
+        "contactMessage": "Hola Edison, vi tu portafolio y me gustaría hablar contigo.",
+        "contactSubject": "Contacto desde tu portafolio",
         "options": {
             "quote": "Cotizar un proyecto",
             "experience": "Experiencia de Edison",
@@ -347,7 +351,8 @@
             "section": "Ver sección",
             "email": "Enviar correo",
             "github": "GitHub",
-            "linkedin": "LinkedIn"
+            "linkedin": "LinkedIn",
+            "whatsapp": "WhatsApp"
         },
         "quote": {
             "start": "¡Genial! ¿Qué tipo de proyecto tienes en mente?",
