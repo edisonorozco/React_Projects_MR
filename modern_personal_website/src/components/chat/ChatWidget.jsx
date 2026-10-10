@@ -10,7 +10,6 @@ const TYPING_DELAY = 550;
 const TEASER_DELAY = 8000;
 const TEASER_KEY = 'chatTeaserSeen';
 const OPEN_EVENT = 'chat:open';
-const KEYBOARD_MIN = 120;
 
 export const openChat = () => window.dispatchEvent(new Event(OPEN_EVENT));
 
@@ -31,6 +30,7 @@ const ChatWidget = () => {
     const timers = useRef([]);
     const bodyRef = useRef(null);
     const inputRef = useRef(null);
+    const panelRef = useRef(null);
 
     const list = (key) => {
         const value = t(key, { returnObjects: true });
@@ -63,16 +63,24 @@ const ChatWidget = () => {
     }, [open]);
 
     /* iOS keeps fixed elements on the layout viewport, so the keyboard covers them.
-       Track the visible area and lift the panel above the keyboard. */
-    const [keyboard, setKeyboard] = useState(null);
+       The panel is placed from the visible area instead (visualViewport), which already
+       excludes the keyboard in Safari and in in-app browsers like Instagram. */
     useEffect(() => {
+        if (!open) return undefined;
+        document.documentElement.classList.add('chat-open');
         const viewport = window.visualViewport;
-        if (!open || !viewport) return undefined;
+        const panel = panelRef.current;
+        if (!viewport || !panel) return () => document.documentElement.classList.remove('chat-open');
+
+        let lastHeight = 0;
         const update = () => {
-            const covered = window.innerHeight - viewport.height - viewport.offsetTop;
-            setKeyboard(covered > KEYBOARD_MIN
-                ? { covered: Math.round(covered), visible: Math.round(viewport.height) }
-                : null);
+            panel.style.setProperty('--vv-top', `${Math.round(viewport.offsetTop)}px`);
+            panel.style.setProperty('--vv-height', `${Math.round(viewport.height)}px`);
+            /* Keyboard opened or closed: keep the latest message in sight */
+            if (viewport.height !== lastHeight && bodyRef.current) {
+                bodyRef.current.scrollTop = bodyRef.current.scrollHeight;
+            }
+            lastHeight = viewport.height;
         };
         update();
         viewport.addEventListener('resize', update);
@@ -80,14 +88,14 @@ const ChatWidget = () => {
         return () => {
             viewport.removeEventListener('resize', update);
             viewport.removeEventListener('scroll', update);
-            setKeyboard(null);
+            document.documentElement.classList.remove('chat-open');
         };
     }, [open]);
 
     useEffect(() => {
         const body = bodyRef.current;
         if (body) body.scrollTop = body.scrollHeight;
-    }, [messages, typing, options, open, keyboard]);
+    }, [messages, typing, options, open]);
 
     const reply = (botMessages, nextOptions) => {
         setOptions([]);
@@ -251,14 +259,9 @@ const ChatWidget = () => {
         : t('Chat.placeholder');
 
     return (
-        <div className="chat-widget">
+        <div className={open ? 'chat-widget chat-widget--open' : 'chat-widget'}>
             {open && (
-                <section
-                    className={keyboard ? 'chat chat--keyboard' : 'chat'}
-                    style={keyboard ? { '--chat-kb': `${keyboard.covered}px`, '--chat-vh': `${keyboard.visible}px` } : undefined}
-                    role="dialog"
-                    aria-label={t('Chat.title')}
-                >
+                <section className="chat" ref={panelRef} role="dialog" aria-label={t('Chat.title')}>
                     <header className="chat__header">
                         <span className="chat__avatar" aria-hidden="true">EO</span>
                         <div className="chat__heading">

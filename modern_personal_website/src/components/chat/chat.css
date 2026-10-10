@@ -54,15 +54,18 @@
 }
 
 /*==================== Panel ====================*/
+/* --vv-top / --vv-height come from visualViewport (set in ChatWidget), so the panel
+   is placed inside the visible area even when a virtual keyboard is open */
 .chat {
+  --chat-height: min(600px, calc(var(--vv-height, 100vh) - 8rem));
   position: fixed;
   right: 1.25rem;
-  bottom: 5.75rem;
+  top: calc(var(--vv-top, 0px) + var(--vv-height, 100vh) - var(--chat-height) - 5.75rem);
   z-index: 200;
   display: flex;
   flex-direction: column;
   width: 380px;
-  height: min(600px, calc(100vh - 8rem));
+  height: var(--chat-height);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -71,16 +74,17 @@
   animation: chat-in 0.2s ease-out;
 }
 
-/* Virtual keyboard open: sit right above it, inside the visible area */
-.chat--keyboard {
-  bottom: calc(var(--chat-kb) + 0.75rem);
-  height: min(600px, calc(var(--chat-vh) - 1.5rem));
-}
-
 @keyframes chat-in {
   from {
     opacity: 0;
     transform: translateY(8px);
+  }
+}
+
+@keyframes chat-sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
   }
 }
 
@@ -341,18 +345,48 @@
 }
 
 /*==================== Breakpoints ====================*/
+/* Phones: full-screen sheet over the visible area; the input stays right above the keyboard */
 @media screen and (max-width: 480px) {
   .chat {
-    right: 0.75rem;
-    left: 0.75rem;
-    bottom: 5.25rem;
+    top: var(--vv-top, 0px);
+    right: 0;
+    left: 0;
     width: auto;
-    height: min(560px, calc(100dvh - 7rem));
+    height: var(--vv-height, 100dvh);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    animation-name: chat-sheet-in;
   }
 
-  .chat--keyboard {
-    bottom: calc(var(--chat-kb) + 0.5rem);
-    height: calc(var(--chat-vh) - 1rem);
+  .chat__header {
+    padding: 0.75rem 0.5rem 0.75rem 1rem;
+    background: var(--surface);
+  }
+
+  .chat__close {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .chat__body {
+    overscroll-behavior: contain;
+  }
+
+  .chat__form {
+    padding: 0.6rem 0.75rem calc(0.6rem + env(safe-area-inset-bottom));
+    background: var(--surface);
+  }
+
+  .chat-widget--open .chat-fab,
+  .chat-widget--open .chat-teaser {
+    display: none;
+  }
+
+  /* The page behind the sheet should not scroll */
+  html.chat-open,
+  html.chat-open body {
+    overflow: hidden;
   }
 
   .chat-fab {
