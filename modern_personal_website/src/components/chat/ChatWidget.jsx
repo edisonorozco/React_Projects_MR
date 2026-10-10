@@ -5,6 +5,7 @@ import Icon from '../Icon';
 import { buildMailto } from '../contact/Contact';
 import { profile, technologies } from '../../data/profile';
 import { detectIntent, isValidEmail } from './intents';
+import avatar from '../../assets/avatar.jpg';
 
 const TYPING_DELAY = 550;
 const TEASER_DELAY = 8000;
@@ -13,8 +14,14 @@ const OPEN_EVENT = 'chat:open';
 
 export const openChat = () => window.dispatchEvent(new Event(OPEN_EVENT));
 
+const now = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
 const MAIN_MENU = ['quote', 'experience', 'services', 'projects', 'tech', 'contact', 'ai'].map((action) => ({ action }));
 const BACK = [{ action: 'menu' }];
+
+const BotAvatar = ({ show }) => (show
+    ? <img className="chat__msg-avatar" src={avatar} alt="" />
+    : <span className="chat__msg-avatar" aria-hidden="true" />);
 
 /* Guided assistant: answers come from the same translation data as the page.
    Free text is matched by keywords for now; later it will go to the RAG backend. */
@@ -27,6 +34,7 @@ const ChatWidget = () => {
     const [input, setInput] = useState('');
     const [quote, setQuote] = useState(null);
     const [teaser, setTeaser] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
     const timers = useRef([]);
     const bodyRef = useRef(null);
     const inputRef = useRef(null);
@@ -57,7 +65,7 @@ const ChatWidget = () => {
         if (!open) return undefined;
         /* Only autofocus with a mouse: on touch screens it would pop the keyboard up right away */
         if (window.matchMedia?.('(hover: hover) and (pointer: fine)').matches) inputRef.current?.focus();
-        const onKey = (event) => event.key === 'Escape' && setOpen(false);
+        const onKey = (event) => event.key === 'Escape' && close();
         window.addEventListener('keydown', onKey);
         return () => window.removeEventListener('keydown', onKey);
     }, [open]);
@@ -102,17 +110,38 @@ const ChatWidget = () => {
         setTyping(true);
         timers.current.push(setTimeout(() => {
             setTyping(false);
-            setMessages((current) => [...current, ...botMessages.map((message) => ({ from: 'bot', ...message }))]);
+            setMessages((current) => [...current, ...botMessages.map((message) => ({ from: 'bot', time: now(), ...message }))]);
             setOptions(nextOptions);
         }, TYPING_DELAY));
     };
 
-    const say = (text) => setMessages((current) => [...current, { from: 'user', text }]);
+    const say = (text) => setMessages((current) => [...current, { from: 'user', text, time: now() }]);
 
     const toggle = () => {
         hideTeaser();
         if (!open && messages.length === 0) reply([{ text: t('Chat.greeting') }], MAIN_MENU);
         setOpen(!open);
+        setMenuOpen(false);
+    };
+
+    function close() {
+        setOpen(false);
+        setMenuOpen(false);
+    }
+
+    const restart = () => {
+        timers.current.forEach(clearTimeout);
+        timers.current = [];
+        setMenuOpen(false);
+        setMessages([]);
+        setQuote(null);
+        setInput('');
+        reply([{ text: t('Chat.greeting') }], MAIN_MENU);
+    };
+
+    const showMenu = () => {
+        setMenuOpen(false);
+        if (!typing) run('menu');
     };
 
     /* Other parts of the page (e.g. the hero button) open the chat through openChat() */
@@ -263,44 +292,83 @@ const ChatWidget = () => {
             {open && (
                 <section className="chat" ref={panelRef} role="dialog" aria-label={t('Chat.title')}>
                     <header className="chat__header">
-                        <span className="chat__avatar" aria-hidden="true">EO</span>
+                        {/* Back arrow on phones (app style), X on larger screens */}
+                        <button className="chat__icon-btn chat__close" onClick={close} aria-label={t('Chat.close')}>
+                            <Icon name="arrowLeft" size={22} className="chat__close-back" />
+                            <Icon name="close" size={18} className="chat__close-x" />
+                        </button>
+                        <img className="chat__avatar" src={avatar} alt="" />
                         <div className="chat__heading">
                             <h2>{t('Chat.title')}</h2>
                             <span className="chat__status">{t('Chat.status')}</span>
                         </div>
-                        <button className="chat__close" onClick={() => setOpen(false)} aria-label={t('Chat.close')}>
-                            <Icon name="close" size={18} />
-                        </button>
+                        <div className="chat__menu">
+                            <button
+                                className="chat__icon-btn"
+                                onClick={() => setMenuOpen(!menuOpen)}
+                                aria-label={t('Chat.more')}
+                                aria-haspopup="menu"
+                                aria-expanded={menuOpen}
+                            >
+                                <Icon name="moreVertical" size={20} />
+                            </button>
+                            {menuOpen && <div className="chat__menu-backdrop" onClick={() => setMenuOpen(false)} />}
+                            {menuOpen && (
+                                <div className="chat__menu-list" role="menu">
+                                    <button role="menuitem" onClick={showMenu}>{t('Chat.showOptions')}</button>
+                                    <button role="menuitem" onClick={restart}>{t('Chat.restart')}</button>
+                                </div>
+                            )}
+                        </div>
                     </header>
 
                     <div className="chat__body" ref={bodyRef} aria-live="polite">
-                        {messages.map((message, index) => (
-                            <div key={index} className={`chat__msg chat__msg--${message.from}`}>
-                                {message.text && <p>{message.text}</p>}
-                                {message.list && (
-                                    <ul className="chat__list">
-                                        {message.list.map((item) => <li key={item}>{item}</li>)}
-                                    </ul>
-                                )}
-                                {message.links && (
-                                    <div className="chat__links">
-                                        {message.links.map((link) => (
-                                            <a
-                                                key={link.href}
-                                                href={link.href}
-                                                {...(link.external ? { target: '_blank', rel: 'noreferrer' } : {})}
-                                            >
-                                                {link.label} <Icon name={link.external ? 'external' : 'arrowRight'} size={13} />
-                                            </a>
-                                        ))}
+                        <span className="chat__day">{t('Chat.today')}</span>
+
+                        {messages.map((message, index) => {
+                            const first = index === 0 || messages[index - 1].from !== message.from;
+                            const rich = message.list || message.links;
+                            const meta = (
+                                <span className="chat__meta">
+                                    {message.time}
+                                    {message.from === 'user' && <Icon name="checks" size={15} className="chat__read" />}
+                                </span>
+                            );
+                            return (
+                                <div key={index} className={`chat__row chat__row--${message.from}${first ? ' chat__row--first' : ''}`}>
+                                    {message.from === 'bot' && <BotAvatar show={first} />}
+                                    <div className={`chat__msg chat__msg--${message.from}`}>
+                                        {message.text && <p>{message.text}{!rich && meta}</p>}
+                                        {message.list && (
+                                            <ul className="chat__list">
+                                                {message.list.map((item) => <li key={item}>{item}</li>)}
+                                            </ul>
+                                        )}
+                                        {message.links && (
+                                            <div className="chat__links">
+                                                {message.links.map((link) => (
+                                                    <a
+                                                        key={link.href}
+                                                        href={link.href}
+                                                        {...(link.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                                                    >
+                                                        {link.label} <Icon name={link.external ? 'external' : 'arrowRight'} size={13} />
+                                                    </a>
+                                                ))}
+                                            </div>
+                                        )}
+                                        {rich && <div className="chat__meta-row">{meta}</div>}
                                     </div>
-                                )}
-                            </div>
-                        ))}
+                                </div>
+                            );
+                        })}
 
                         {typing && (
-                            <div className="chat__msg chat__msg--bot chat__typing" aria-label={t('Chat.typing')}>
-                                <span></span><span></span><span></span>
+                            <div className="chat__row chat__row--bot">
+                                <BotAvatar show={messages[messages.length - 1]?.from !== 'bot'} />
+                                <div className="chat__msg chat__msg--bot chat__typing" aria-label={t('Chat.typing')}>
+                                    <span></span><span></span><span></span>
+                                </div>
                             </div>
                         )}
 
@@ -320,6 +388,15 @@ const ChatWidget = () => {
                     </div>
 
                     <form className="chat__form" onSubmit={handleSubmit}>
+                        <button
+                            type="button"
+                            className="chat__plus"
+                            onClick={showMenu}
+                            aria-label={t('Chat.showOptions')}
+                            disabled={typing}
+                        >
+                            <Icon name="plus" size={22} />
+                        </button>
                         <input
                             ref={inputRef}
                             value={input}
@@ -327,10 +404,11 @@ const ChatWidget = () => {
                             placeholder={placeholder}
                             aria-label={placeholder}
                             inputMode={quote?.step === 'email' ? 'email' : 'text'}
+                            enterKeyHint="send"
                             maxLength={500}
                         />
-                        <button type="submit" aria-label={t('Chat.send')} disabled={!input.trim()}>
-                            <Icon name="send" size={16} />
+                        <button type="submit" className="chat__send" aria-label={t('Chat.send')} disabled={!input.trim()}>
+                            <Icon name="send" size={18} />
                         </button>
                     </form>
                 </section>

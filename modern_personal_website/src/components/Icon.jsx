@@ -92,6 +92,23 @@ const paths = {
     close: <>
         <path d="M18 6 6 18" />
         <path d="m6 6 12 12" />
+    </>,
+    arrowLeft: <>
+        <path d="m12 19-7-7 7-7" />
+        <path d="M19 12H5" />
+    </>,
+    moreVertical: <>
+        <circle cx="12" cy="5" r="1" />
+        <circle cx="12" cy="12" r="1" />
+        <circle cx="12" cy="19" r="1" />
+    </>,
+    plus: <>
+        <path d="M5 12h14" />
+        <path d="M12 5v14" />
+    </>,
+    checks: <>
+        <path d="M18 6 7 17l-5-5" />
+        <path d="m22 10-7.5 7.5L13 16" />
     </>
 }
 
