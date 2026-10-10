@@ -247,6 +247,32 @@ img {
   box-shadow: var(--shadow-sm);
 }
 
+/*==================== Theme switch ====================*/
+/* The new theme is revealed through a radial mask that useTheme grows from the toggle:
+   solid in the middle, fading out at the edge, so the switch reads as a soft gradient wave */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  -webkit-mask-image: radial-gradient(closest-side, #000 70%, transparent);
+  mask-image: radial-gradient(closest-side, #000 70%, transparent);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-size: 0 0;
+}
+
+/* Fallback without View Transitions: fade the colors */
+html.theme-fade,
+html.theme-fade *,
+html.theme-fade *::before,
+html.theme-fade *::after {
+  transition: background-color 0.45s ease, color 0.45s ease, border-color 0.45s ease,
+    fill 0.45s ease, stroke 0.45s ease !important;
+}
+
 /*==================== Breakpoints ====================*/
 @media screen and (max-width: 576px) {
   .container {
