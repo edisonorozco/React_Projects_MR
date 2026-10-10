@@ -10,6 +10,7 @@ const TYPING_DELAY = 550;
 const TEASER_DELAY = 8000;
 const TEASER_KEY = 'chatTeaserSeen';
 const OPEN_EVENT = 'chat:open';
+const KEYBOARD_MIN = 120;
 
 export const openChat = () => window.dispatchEvent(new Event(OPEN_EVENT));
 
@@ -54,16 +55,39 @@ const ChatWidget = () => {
 
     useEffect(() => {
         if (!open) return undefined;
-        inputRef.current?.focus();
+        /* Only autofocus with a mouse: on touch screens it would pop the keyboard up right away */
+        if (window.matchMedia?.('(hover: hover) and (pointer: fine)').matches) inputRef.current?.focus();
         const onKey = (event) => event.key === 'Escape' && setOpen(false);
         window.addEventListener('keydown', onKey);
         return () => window.removeEventListener('keydown', onKey);
     }, [open]);
 
+    /* iOS keeps fixed elements on the layout viewport, so the keyboard covers them.
+       Track the visible area and lift the panel above the keyboard. */
+    const [keyboard, setKeyboard] = useState(null);
+    useEffect(() => {
+        const viewport = window.visualViewport;
+        if (!open || !viewport) return undefined;
+        const update = () => {
+            const covered = window.innerHeight - viewport.height - viewport.offsetTop;
+            setKeyboard(covered > KEYBOARD_MIN
+                ? { covered: Math.round(covered), visible: Math.round(viewport.height) }
+                : null);
+        };
+        update();
+        viewport.addEventListener('resize', update);
+        viewport.addEventListener('scroll', update);
+        return () => {
+            viewport.removeEventListener('resize', update);
+            viewport.removeEventListener('scroll', update);
+            setKeyboard(null);
+        };
+    }, [open]);
+
     useEffect(() => {
         const body = bodyRef.current;
         if (body) body.scrollTop = body.scrollHeight;
-    }, [messages, typing, options, open]);
+    }, [messages, typing, options, open, keyboard]);
 
     const reply = (botMessages, nextOptions) => {
         setOptions([]);
@@ -229,7 +253,12 @@ const ChatWidget = () => {
     return (
         <div className="chat-widget">
             {open && (
-                <section className="chat" role="dialog" aria-label={t('Chat.title')}>
+                <section
+                    className={keyboard ? 'chat chat--keyboard' : 'chat'}
+                    style={keyboard ? { '--chat-kb': `${keyboard.covered}px`, '--chat-vh': `${keyboard.visible}px` } : undefined}
+                    role="dialog"
+                    aria-label={t('Chat.title')}
+                >
                     <header className="chat__header">
                         <span className="chat__avatar" aria-hidden="true">EO</span>
                         <div className="chat__heading">

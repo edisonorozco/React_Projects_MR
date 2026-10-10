@@ -71,6 +71,12 @@
   animation: chat-in 0.2s ease-out;
 }
 
+/* Virtual keyboard open: sit right above it, inside the visible area */
+.chat--keyboard {
+  bottom: calc(var(--chat-kb) + 0.75rem);
+  height: min(600px, calc(var(--chat-vh) - 1.5rem));
+}
+
 @keyframes chat-in {
   from {
     opacity: 0;
@@ -344,6 +350,11 @@
     height: min(560px, calc(100dvh - 7rem));
   }
 
+  .chat--keyboard {
+    bottom: calc(var(--chat-kb) + 0.5rem);
+    height: calc(var(--chat-vh) - 1rem);
+  }
+
   .chat-fab {
     right: 1rem;
     bottom: 1rem;
@@ -352,6 +363,13 @@
   .chat-teaser {
     right: 1rem;
     bottom: 5.25rem;
+  }
+}
+
+/* iOS zooms into inputs under 16px when they get focus */
+@media (pointer: coarse) {
+  .chat__form input {
+    font-size: 16px;
   }
 }
 
