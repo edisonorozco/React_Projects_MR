@@ -322,6 +322,10 @@
         "more": "More options",
         "showOptions": "Show options",
         "restart": "Restart conversation",
+        "whatsapp": "Message me on WhatsApp",
+        "emailMe": "Send me an email",
+        "contactMessage": "Hi Edison, I saw your portfolio and I'd like to talk.",
+        "contactSubject": "Contact from your portfolio",
         "options": {
             "quote": "Get a quote",
             "experience": "Edison's experience",
@@ -347,7 +351,8 @@
             "section": "View section",
             "email": "Send email",
             "github": "GitHub",
-            "linkedin": "LinkedIn"
+            "linkedin": "LinkedIn",
+            "whatsapp": "WhatsApp"
         },
         "quote": {
             "start": "Great! What kind of project do you have in mind?",

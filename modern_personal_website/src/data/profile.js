@@ -3,6 +3,7 @@ export const profile = {
     email: 'edison.orozco@outlook.com',
     github: 'https://github.com/edisonorozco',
     linkedin: '', // TODO: public LinkedIn profile URL (the old one pointed to the settings page)
+    whatsapp: '', // TODO: number with country code, e.g. '573001234567'. Empty: the floating button opens email
     cv: '',       // TODO: URL or /path of the CV PDF (the old John-Cv.pdf was a blank template file)
 };
 
